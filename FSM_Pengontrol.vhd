@@ -15,9 +15,7 @@ entity CRC_Controller is
         en_regis        : out STD_LOGIC; -- Clock Enable Register
         Output_ctrl        : out STD_LOGIC; -- Clock Enable Register
         Reset        : out STD_LOGIC; -- Clock Enable Register
-        Z_fromBus        : out STD_LOGIC; -- Clock Enable Register
-        
-
+        Z_fromBus        : out STD_LOGIC -- Clock Enable Register
     );
 end CRC_Controller;
 
@@ -54,7 +52,7 @@ begin
     -- =========================================================
     -- PROSES 2: COMBINATIONAL (Logika Transisi & Output)
     -- =========================================================
-    process(current_state, is_4_bytes, is_end_packet)
+    process(current_state, is_4, is_end)
     begin
         -- Default Values (Untuk mencegah Latch & Glitch)
         -- Kondisi "HOLD" yang aman:
@@ -75,10 +73,10 @@ begin
                 Feedback_ctrl <= '1';
                 Output_ctrl <= '0';
                 Z_fromBus <= '1';
-                SelOut_XOR <= '1';
+                sel_out_xor <= '1';
                 Reset <= '1';
                 -- Pindah ke tunggu data pertama
-                if is_4_bytes = '1' then
+                if is_4 = '1' then
                     next_state <= S_First4Byte;
                 else
                     next_state <= S_IDLE;
@@ -91,7 +89,7 @@ begin
                 Feedback_ctrl <= '1';
                 Output_ctrl <= '0';
                 Z_fromBus <= '1';
-                SelOut_XOR <= '1';
+                sel_out_xor <= '1';
                 Reset <= '1';
                 -- Diam di sini sampai SIPO penuh
                 if is_end = '1' then
@@ -107,7 +105,7 @@ begin
                 Feedback_ctrl <= '0';
                 Output_ctrl <= '0';
                 Z_fromBus <= '1';
-                SelOut_XOR <= '1';
+                sel_out_xor <= '1';
                 Reset <= '0';
                 -- Diam di sini sampai SIPO penuh
                 if is_4 = '0' and is_end = '0' then
@@ -124,7 +122,7 @@ begin
                 Feedback_ctrl <= '0';
                 Output_ctrl <= '0';
                 Z_fromBus <= '1';
-                SelOut_XOR <= '1';
+                sel_out_xor <= '1';
                 Reset <= '1';
                 -- Diam di sini sampai SIPO penuh
                 if is_4 = '0' and is_end = '0' then
@@ -141,13 +139,14 @@ begin
                 Feedback_ctrl <= '0';
                 Output_ctrl <= '0';
                 Z_fromBus <= '1';
-                SelOut_XOR <= '0';
+                sel_out_xor <= '0';
                 Reset <= '0';
                 -- Diam di sini sampai SIPO penuh
-                if is_end = 0 then
+                if is_end = '0' then
                     next_state <= S_Transition;
                 else
                     next_state <= S_Done;
+                end if;
 
             -- STATE: HITUNG PAKET LANJUTAN (Looping)
             when S_Done =>
@@ -156,7 +155,7 @@ begin
                 Feedback_ctrl <= '0';
                 Output_ctrl <= '1';
                 Z_fromBus <= '0';
-                SelOut_XOR <= '1';
+                sel_out_xor <= '1';
                 Reset <= '1';
                 -- Diam di sini sampai SIPO penuh
                 next_state <= S_idle;

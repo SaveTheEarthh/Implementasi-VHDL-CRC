@@ -3,15 +3,15 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
-entity VHDL_Binary_Comparator is
+entity comparator is
   port (
-	  inp-A,inp-B   : in std_logic_vector(3 downto 0);
+	  inp_A,inp_B   : in std_logic_vector(3 downto 0);
 	  equal : out std_logic
    );
-end VHDL_Binary_Comparator ; 
+end comparator ; 
 
-architecture bhv of VHDL_Binary_Comparator is
+architecture bhv of comparator is
 begin
-equal <= '1' when (inp-A = inp-B)
+equal <= '1' when (inp_A = inp_B)
 else '0';
 end bhv;

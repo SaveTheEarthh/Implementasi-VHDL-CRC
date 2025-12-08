@@ -36,10 +36,10 @@ begin
 	begin
 		-- jika selector bernilai 1, maka data B yang diteruskan ke luaran.
 		if (Sel = '1') then
-			Data <= B;
+			Data <= A;
 		else
 		-- jika selector bernilai 0, maka data A yang diteruskan ke luaran.
-			Data <= A;
+			Data <= B;
 		end if;
 	end process;
 end rtl;

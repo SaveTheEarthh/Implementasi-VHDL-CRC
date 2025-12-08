@@ -6,18 +6,18 @@ entity demux_1to2 is
 
  F : in std_logic_vector(31 downto 0);
  S: in STD_LOGIC;
- A,B: out std_logic_vector(31 downto 0);
+ A,B: out std_logic_vector(31 downto 0)
  );
-end demux_1to4;
+end demux_1to2;
 
-architecture bhv of demux_1to4 is
+architecture bhv of demux_1to2 is
 begin
-process (F,S0,S1) is
+process (F,S) is
 begin
  if (S ='0') then
- A <= F;
- elsif (S0 ='1) then
  B <= F;
+ elsif (S ='1') then
+ A <= F;
  end if;
 
 end process;
