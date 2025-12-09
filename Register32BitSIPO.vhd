@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity SIPO_32bit is
+entity Register32BitSIPO is
     Port ( 
         clk         : in  STD_LOGIC;
         reset       : in  STD_LOGIC;
@@ -14,9 +14,9 @@ entity SIPO_32bit is
         -- Interface ke CRC Engine (Output)
         chunk_data  : out STD_LOGIC_VECTOR (31 downto 0) -- Data 32-bit keluar                    -- Sinyal 'Is_4' (Penuh)
     );
-end SIPO_32bit;
+end Register32BitSIPO;
 
-architecture Behavioral of SIPO_32bit is
+architecture Behavioral of Register32BitSIPO is
     
     -- Register penampung geser (Internal Buffer)
     signal shift_reg : std_logic_vector(31 downto 0) := (others => '0');

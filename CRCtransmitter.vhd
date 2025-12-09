@@ -5,17 +5,17 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -- Define entity
-entity CRCreceiver is
+entity CRCtransmitter is
 	port	(
 				input_data		:in		std_logic_vector (7 downto 0);	-- data A
                 output_akhir		:out		std_logic_vector (31 downto 0); -- data B
                 data_valid  :in     std_logic;
 				clk	:		in		std_logic-- sinyal Clockian
 			);
-end CRCreceiver;
+end CRCtransmitter;
 
 -- Define architecture
-architecture rtl of CRCreceiver is
+architecture rtl of CRCtransmitter is
     signal is_corrupt_temp, Sel, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, Output_ctrl, reset, Z_fromBus: STD_LOGIC;
     signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 0);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);

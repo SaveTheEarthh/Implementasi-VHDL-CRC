@@ -20,7 +20,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -- Define entity
-entity register32bit is
+entity register32BitPIPO is
 	port	(
 				A		:		in		std_logic_vector (31 downto 0);	-- data A
 				En		:		in		std_logic;								-- sinyal Enable
@@ -28,10 +28,10 @@ entity register32bit is
 				Clk	:		in		std_logic;								-- sinyal Clock
 				Data	:		out	std_logic_vector (31 downto 0)		-- luaran data
 			);
-end register32bit;
+end register32BitPIPO;
 
 -- Define architecture
-architecture rtl of register32bit is
+architecture rtl of register32BitPIPO is
 	-- sinyal untuk data yang akan disimpan. default bernilai 0.
 	signal v_data	:	std_logic_vector (31 downto 0) := "00000000000000000000000000000000";
 	

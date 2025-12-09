@@ -59,7 +59,7 @@ component register32bitPIPO
 			);
 end component;
 
-component SIPO_32bit 
+component Register32BitSIPO 
 	port	(
         clk         : in  STD_LOGIC;
         reset       : in  STD_LOGIC;
@@ -159,7 +159,7 @@ CTRL: CRC_Controller
     Z_fromBus => Z_fromBus
 );
 
-REGIS_SIPO: SIPO_32bit
+REGIS_SIPO: Register32BitSIPO
  port map(
     clk => clk,
     reset => '0',
