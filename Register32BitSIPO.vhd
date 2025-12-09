@@ -12,8 +12,7 @@ entity SIPO_32bit is
         uart_valid  : in  STD_LOGIC;                     -- Sinyal valid dari UART
         
         -- Interface ke CRC Engine (Output)
-        chunk_data  : out STD_LOGIC_VECTOR (31 downto 0); -- Data 32-bit keluar
-        chunk_ready : out STD_LOGIC                       -- Sinyal 'Is_4' (Penuh)
+        chunk_data  : out STD_LOGIC_VECTOR (31 downto 0) -- Data 32-bit keluar                    -- Sinyal 'Is_4' (Penuh)
     );
 end SIPO_32bit;
 
@@ -68,7 +67,6 @@ begin
     end process;
 
     -- Sambungkan sinyal internal ke port output
-    chunk_data  <= shift_reg;
-    chunk_ready <= ready_pulse; -- Ini yang disambung ke 'Is4' di FSM Anda
+    chunk_data  <= shift_reg; -- Ini yang disambung ke 'Is4' di FSM Anda
 
 end Behavioral;

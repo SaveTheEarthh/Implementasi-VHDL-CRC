@@ -26,17 +26,17 @@ use ieee.numeric_std.all;
 -- Define entity
 entity CRCtransmitter is
 	port	(
-				input		:in		std_logic_vector (31 downto 0);	-- data A
-                output		:in		std_logic_vector (31 downto 0); -- data B
+				input_data		:in		std_logic_vector (7 downto 0);	-- data A
+                output_akhir	:out		std_logic_vector (31 downto 0); -- data B
                 data_valid  :in     std_logic;
-				Clk	:		in		std_logic-- sinyal Clockian
+				clk	:		in		std_logic-- sinyal Clockian
 			);
 end CRCtransmitter;
 
 -- Define architecture
 architecture rtl of CRCtransmitter is
     signal Sel, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, Output_ctrl, reset, Z_fromBus: STD_LOGIC;
-    signal data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 1);
+    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, first_4Byte, second_4Byte, third_4Byte, fourth_4byte, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 1);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);
 
 component mux2to1_32bit 
@@ -115,6 +115,33 @@ component CRC_Controller
     );
 end component;
 
+component LUT_1
+    Port ( addr_in : in  STD_LOGIC_VECTOR (7 downto 0);
+           data_out : out  STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
+component LUT_2
+Port ( addr_in : in  STD_LOGIC_VECTOR (7 downto 0);
+           data_out : out  STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
+component LUT_3
+Port ( addr_in : in  STD_LOGIC_VECTOR (7 downto 0);
+           data_out : out  STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
+component LUT_4
+Port ( addr_in : in  STD_LOGIC_VECTOR (7 downto 0);
+           data_out : out  STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
+component LUT_Prev
+ Port ( 
+        prev_crc_in : in  STD_LOGIC_VECTOR (31 downto 0); -- From Register
+        lut_prev_out : out  STD_LOGIC_VECTOR (31 downto 0) -- To Feedback Mux/XOR
+    );
+end component;
+
 begin
 
 data_after_XOR <= data_after_muxA xor data_after_muxB;
@@ -131,6 +158,88 @@ CTRL: CRC_Controller
     Output_ctrl => Output_ctrl,
     Reset => Reset,
     Z_fromBus => Z_fromBus
+);
+
+REGIS_SIPO: SIPO_32bit
+ port map(
+    clk => clk,
+    reset => '0',
+    uart_data => input_data,
+    uart_valid => data_valid,
+    chunk_data => SIPO_out
+);
+
+MUX_1: mux2to1_32bit
+ port map(
+    A => SIPO_out(31 downto 24),
+    B => "00000000000000000000000000000000",
+    Sel => Z_fromBus,
+    Data => first_4Byte
+);
+
+MUX_2: mux2to1_32bit
+ port map(
+    A => SIPO_out(23 downto 16),
+    B => "00000000000000000000000000000000",
+    Sel => Z_fromBus,
+    Data => second_4Byte
+);
+
+MUX_3: mux2to1_32bit
+ port map(
+    A => SIPO_out(15 downto 8),
+    B => "00000000000000000000000000000000",
+    Sel => Z_fromBus,
+    Data => third_4Byte
+);
+
+MUX_4: mux2to1_32bit
+ port map(
+    A => SIPO_out(7 downto 0),
+    B => "00000000000000000000000000000000",
+    Sel => Z_fromBus,
+    Data => fourth_4byte
+);
+
+LUT_1_inst: LUT_1
+ port map(
+    addr_in => first_4Byte,
+    data_out => out_LUT1
+);
+
+LUT_2_inst: LUT_2
+ port map(
+    addr_in => second_4Byte,
+    data_out => out_LUT2
+);
+
+LUT_3_inst: LUT_3
+ port map(
+    addr_in => third_4Byte,
+    data_out => out_LUT3
+);
+
+LUT_4_inst: LUT_4
+ port map(
+    addr_in => fourth_4byte,
+    data_out => out_LUT4
+);
+
+LUT_Prev_inst: LUT_Prev
+ port map(
+    prev_crc_in => data_after_demux,
+    lut_prev_out => data_after_LUT_prev
+);
+
+output_LUT <= out_LUT1 xor out_LUT2 xor out_LUT3 xor out_LUT4;
+
+REGIS_PIPO_atas: register32bitPIPO
+ port map(
+    A => output_LUT,
+    En => '1',
+    Res => '0',
+    Clk => Clk,
+    Data => data_after_PIPO
 );
 
 MUX_A: mux2to1_32bit
@@ -161,37 +270,13 @@ DEMUX: demux_1to2
  port map(
     F => data_after_regis32bit,
     S => Output_ctrl,
-    A => output,
+    A => output_data,
     B => data_after_demux
 );
 
-REGIS_PIPO_atas: register32bitPIPO
- port map(
-    A => output_LUT,
-    En => '1',
-    Res => '0',
-    Clk => Clk,
-    Data => data_after_PIPO
-);
+output_akhir <= output_data;
 
 REGIS_PIPO_bawah: register32bitPIPO
- port map(
-    A => data_after_muxC,
-    En => en_regis,
-    Res => '0',
-    Clk => Clk,
-    Data => data_after_regis32bit
-);
-
-REGIS_SIPO: SIPO_32bit
- port map(
-    clk => clk,
-    reset => '0',
-    uart_data => input,
-    uart_valid => data_valid,
-    chunk_data => SIPO_out,
-    chunk_ready => Z_fromBus
-);
  port map(
     A => data_after_muxC,
     En => en_regis,
@@ -217,11 +302,9 @@ comparator_4: comparator
 
 comparator_end: comparator
  port map(
-    inp_A => input,
+    inp_A => input_data,
     inp_B => "00001101",
     equal => is_end
 );
-
-
     end rtl;
 	
