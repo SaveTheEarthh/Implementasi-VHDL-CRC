@@ -69,8 +69,7 @@ component Register32BitSIPO
         uart_valid  : in  STD_LOGIC;                     -- Sinyal valid dari UART
         
         -- Interface ke CRC Engine (Output)
-        chunk_data  : out STD_LOGIC_VECTOR (31 downto 0); -- Data 32-bit keluar
-        chunk_ready : out STD_LOGIC        	-- luaran data
+        chunk_data  : out STD_LOGIC_VECTOR (31 downto 0) -- Data 32-bit keluar      	-- luaran data
 			);
 end component;
 
@@ -159,7 +158,7 @@ CTRL: CRC_Controller
     Z_fromBus => Z_fromBus
 );
 
-REGIS_SIPO: Register32BitSIPO
+SIPO_atas: Register32BitSIPO
  port map(
     clk => clk,
     reset => '0',
