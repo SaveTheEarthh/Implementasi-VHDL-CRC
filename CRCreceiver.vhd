@@ -1,23 +1,4 @@
 
--- Pembuat
--- Nama 	: Timothy Yves Halim dan Akursio Kidung Gamel B.P
--- NIM		: 132240024 dan 13224051
--- Rombongan : Selasa-1
--- kelompok : 2
--- percobaan: 3
--- Tanggal: 4 November 2024
------------------------------------------------------------------------------
--- Deskripsi
--- Menghitung Modulo dari Pembagian A/B. Akan mengeluarkan output C (Hasil sisa/modulo) dan D jumlah Iterasi
--- input:
---			A		data 4 bit
---			B		data 4 bit.
---			Start input 1 bit, menandakan sistem berjalan
---			Stop input 1 bit, menandakan sistem berhenti
---			Clk input untuk clock
--- output :
---			C dan D output 4 bit. C adalah hasil modulo dan D merupakan jumlah iterasi
-
 -- Library
 library ieee;
 use ieee.std_logic_1164.all;
@@ -36,15 +17,27 @@ end CRCreceiver;
 -- Define architecture
 architecture rtl of CRCreceiver is
     signal is_corrupt_temp, Sel, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, Output_ctrl, reset, Z_fromBus: STD_LOGIC;
-    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, first_4Byte, second_4Byte, third_4Byte, fourth_4byte, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 0);
+    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 0);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);
+    signal first_byte, second_byte, third_byte, fourth_byte: STD_LOGIC_VECTOR(7 downto 0);
+    signal padded_counter : std_logic_vector(31 downto 0);
+signal padded_input   : std_logic_vector(31 downto 0);
 
 component mux2to1_32bit 
 	port	(
 				A		:		in		std_logic_vector (31 downto 0);	-- data A
 				B		:		in		std_logic_vector (31 downto 0);	-- data B
 				Sel	    :		in		std_logic;								-- selector
-				Data	:		out	std_logic_vector (3 downto 0)		-- luaran data
+				Data	:		out	std_logic_vector (31 downto 0)		-- luaran data
+			);
+end component;
+
+component mux2to1_8bit is
+	port	(
+				A		:		in		std_logic_vector (7 downto 0);	-- data A
+				B		:		in		std_logic_vector (7 downto 0);	-- data B
+				Sel	:		in		std_logic;								-- selector
+				Data	:		out	std_logic_vector (7 downto 0)		-- luaran data
 			);
 end component;
 
@@ -83,7 +76,7 @@ end component;
 
 component comparator 
 	port	(
-            inp_A,inp_B   : in std_logic_vector(3 downto 0);
+            inp_A,inp_B   : in std_logic_vector(31 downto 0);
 	        equal : out std_logic
     );
 end component;
@@ -146,6 +139,12 @@ begin
 
 data_after_XOR <= data_after_muxA xor data_after_muxB;
 
+-- Correct padding: 28 zeros + 4 bit counter = 32 bits
+padded_counter <= "0000000000000000000000000000" & hasil_comparator_4; 
+
+-- Correct padding for input data check (checking against 32-bit comparator)
+padded_input   <= "000000000000000000000000" & input_data;
+
 CTRL: CRC_Controller
  port map(
     clk => clk,
@@ -169,59 +168,59 @@ REGIS_SIPO: SIPO_32bit
     chunk_data => SIPO_out
 );
 
-MUX_1: mux2to1_32bit
+MUX_1: mux2to1_8bit
  port map(
-    A => SIPO_out(31 downto 24)&"000000000000000000000000",
-    B => "00000000000000000000000000000000",
+    A => SIPO_out(31 downto 24),
+    B => "00000000",
     Sel => Z_fromBus,
-    Data => first_4Byte
+    Data => first_byte
 );
 
-MUX_2: mux2to1_32bit
+MUX_2: mux2to1_8bit
  port map(
-    A => "00000000" & SIPO_out(23 downto 16) & "0000000000000000",
-    B => "00000000000000000000000000000000",
+    A => SIPO_out(23 downto 16),
+    B => "00000000",
     Sel => Z_fromBus,
-    Data => second_4Byte
+    Data => second_byte
 );
 
-MUX_3: mux2to1_32bit
+MUX_3: mux2to1_8bit
  port map(
-    A => "0000000000000000"& SIPO_out(15 downto 8) & "00000000",
-    B => "00000000000000000000000000000000",
+    A => SIPO_out(15 downto 8),
+    B => "00000000",
     Sel => Z_fromBus,
-    Data => third_4Byte
+    Data => third_byte
 );
 
-MUX_4: mux2to1_32bit
+MUX_4: mux2to1_8bit
  port map(
-    A => "000000000000000000000000"&SIPO_out(7 downto 0),
-    B => "00000000000000000000000000000000",
+    A => SIPO_out(7 downto 0),
+    B => "00000000",
     Sel => Z_fromBus,
-    Data => fourth_4byte
+    Data => fourth_byte
 );
 
 LUT_1_inst: LUT_1
  port map(
-    addr_in => first_4Byte,
+    addr_in => first_byte,
     data_out => out_LUT1
 );
 
 LUT_2_inst: LUT_2
  port map(
-    addr_in => second_4Byte,
+    addr_in => second_byte,
     data_out => out_LUT2
 );
 
 LUT_3_inst: LUT_3
  port map(
-    addr_in => third_4Byte,
+    addr_in => third_byte,
     data_out => out_LUT3
 );
 
 LUT_4_inst: LUT_4
  port map(
-    addr_in => fourth_4byte,
+    addr_in => fourth_byte,
     data_out => out_LUT4
 );
 
@@ -292,18 +291,18 @@ counter: counter4bit
 	);
 
 comparator_4: comparator
- port map(
-    inp_A => hasil_comparator_4,
-    inp_B => "100",
-    equal => is_4
-);
+    port map(
+        inp_A => padded_counter, -- Clean signal
+        inp_B => x"00000004",    -- Hex is cleaner than "000..100"
+        equal => is_4
+    );
 
 comparator_end: comparator
- port map(
-    inp_A => input_data,
-    inp_B => "00001101",
-    equal => is_end
-);
+    port map(
+        inp_A => padded_input,   -- Clean signal
+        inp_B => x"0000000D",    -- 13 is 'Enter'
+        equal => is_end
+    );
 
 comparator_0: comparator
  port map(

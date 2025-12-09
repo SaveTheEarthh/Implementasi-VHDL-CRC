@@ -41,13 +41,9 @@ begin
     process(clk)
     begin
         if rising_edge(clk) then
-            if reset = '1' then
-                current_state <= S_IDLE;
-            else
-                current_state <= next_state;
+            current_state <= next_state;
             end if;
-        end if;
-    end process;
+           end process;
 
     -- =========================================================
     -- PROSES 2: COMBINATIONAL (Logika Transisi & Output)

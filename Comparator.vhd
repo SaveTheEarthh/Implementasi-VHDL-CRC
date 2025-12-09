@@ -5,7 +5,7 @@ use ieee.std_logic_unsigned.all;
 
 entity comparator is
   port (
-	  inp_A,inp_B   : in std_logic_vector(3 downto 0);
+	  inp_A,inp_B   : in std_logic_vector(31 downto 0);
 	  equal : out std_logic
    );
 end comparator ; 
