@@ -1,0 +1,132 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity tb_CRCreceiver is
+    -- Testbench tidak memiliki port
+end tb_CRCreceiver;
+
+architecture Behavioral of tb_CRCreceiver is
+
+    -- 1. Komponen yang akan diuji (DUT - Design Under Test)
+    component CRCreceiver
+        Port ( 
+            input_data : in  STD_LOGIC_VECTOR (7 downto 0);
+            is_corrupt : out STD_LOGIC;
+            data_valid : in  STD_LOGIC;
+            clk        : in  STD_LOGIC
+        );
+    end component;
+
+    -- 2. Sinyal Internal untuk menghubungkan ke DUT
+    signal tb_clk        : std_logic := '0';
+    signal tb_data_valid : std_logic := '0';
+    signal tb_input_data : std_logic_vector(7 downto 0) := (others => '0');
+    signal tb_is_corrupt : std_logic;
+
+    -- 3. Konstanta Waktu
+    constant CLK_PERIOD : time := 10 ns; -- 100 MHz Clock
+
+begin
+
+    -- Instansiasi DUT
+    uut: CRCreceiver
+        port map (
+            clk        => tb_clk,
+            data_valid => tb_data_valid,
+            input_data => tb_input_data,
+            is_corrupt => tb_is_corrupt
+        );
+
+    -- Proses Pembangkit Clock
+    clk_process : process
+    begin
+        tb_clk <= '0';
+        wait for CLK_PERIOD/2;
+        tb_clk <= '1';
+        wait for CLK_PERIOD/2;
+    end process;
+
+    -- Proses Stimulus (Skenario Pengujian)
+    stim_proc: process
+    begin
+        -- A. Inisialisasi
+        wait for 100 ns; -- Tunggu global reset (jika ada)
+        
+        -- Skenario 1: Kirim Paket Data VALID (Misal: 8 Byte)
+        -- Asumsi: Sistem Anda menerima 8 byte lalu cek CRC
+        
+        report "Mulai Mengirim Paket Data...";
+        
+        -- Kirim Byte 1
+        tb_input_data <= x"01"; -- Data 1
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;    -- Tahan selama 1 clock (Pulse)
+        
+        tb_data_valid <= '0';   -- Matikan valid (Simulasi jeda UART)
+        wait for 50 ns;         -- Jeda antar byte
+        
+        -- Kirim Byte 2
+        tb_input_data <= x"02"; 
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;
+        tb_data_valid <= '0';
+        wait for 50 ns;
+
+        -- Kirim Byte 3
+        tb_input_data <= x"03"; 
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;
+        tb_data_valid <= '0';
+        wait for 50 ns;
+
+        -- Kirim Byte 4 (SIPO Penuh Pertama)
+        tb_input_data <= x"04"; 
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;
+        tb_data_valid <= '0';
+        wait for 50 ns;
+        
+        -- Kirim Byte 5
+        tb_input_data <= x"05"; 
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;
+        tb_data_valid <= '0';
+        wait for 50 ns;
+
+        -- Kirim Byte 6
+        tb_input_data <= x"06"; 
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;
+        tb_data_valid <= '0';
+        wait for 50 ns;
+
+        -- Kirim Byte 7
+        tb_input_data <= x"07"; 
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;
+        tb_data_valid <= '0';
+        wait for 50 ns;
+
+        -- Kirim Byte 8 (Is_End / Enter / Akhir Paket)
+        -- Misal 0x0D adalah Enter/End
+        tb_input_data <= x"0D"; 
+        tb_data_valid <= '1';
+        wait for CLK_PERIOD;
+        tb_data_valid <= '0';
+        
+        -- B. Tunggu Hasil
+        report "Data Selesai Dikirim. Menunggu Hasil Checker...";
+        wait for 200 ns; -- Beri waktu FSM memproses
+        
+        -- C. Cek Hasil (Assert)
+        if tb_is_corrupt = '0' then
+            report "HASIL: DATA VALID (Sukses)" severity note;
+        else
+            report "HASIL: DATA CORRUPT (Gagal/Error)" severity warning;
+        end if;
+
+        wait; -- Stop simulasi
+    end process;
+
+end Behavioral;
