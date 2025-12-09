@@ -36,7 +36,7 @@ end CRCtransmitter;
 -- Define architecture
 architecture rtl of CRCtransmitter is
     signal Sel, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, Output_ctrl, reset, Z_fromBus: STD_LOGIC;
-    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, first_4Byte, second_4Byte, third_4Byte, fourth_4byte, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 1);
+    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, first_4Byte, second_4Byte, third_4Byte, fourth_4byte, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 0);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);
 
 component mux2to1_32bit 

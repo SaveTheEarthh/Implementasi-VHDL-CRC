@@ -24,7 +24,7 @@ entity mux2to1_32bit is
 				A		:		in		std_logic_vector (31 downto 0);	-- data A
 				B		:		in		std_logic_vector (31 downto 0);	-- data B
 				Sel	:		in		std_logic;								-- selector
-				Data	:		out	std_logic_vector (3 downto 0)		-- luaran data
+				Data	:		out	std_logic_vector (31 downto 0)		-- luaran data
 			);
 end mux2to1_32bit;
 

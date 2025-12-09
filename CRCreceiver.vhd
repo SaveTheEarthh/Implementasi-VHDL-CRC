@@ -36,7 +36,7 @@ end CRCreceiver;
 -- Define architecture
 architecture rtl of CRCreceiver is
     signal is_corrupt_temp, Sel, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, Output_ctrl, reset, Z_fromBus: STD_LOGIC;
-    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, first_4Byte, second_4Byte, third_4Byte, fourth_4byte, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 1);
+    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, first_4Byte, second_4Byte, third_4Byte, fourth_4byte, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 0);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);
 
 component mux2to1_32bit 
@@ -171,7 +171,7 @@ REGIS_SIPO: SIPO_32bit
 
 MUX_1: mux2to1_32bit
  port map(
-    A => SIPO_out(31 downto 24),
+    A => SIPO_out(31 downto 24)&"000000000000000000000000",
     B => "00000000000000000000000000000000",
     Sel => Z_fromBus,
     Data => first_4Byte
@@ -179,7 +179,7 @@ MUX_1: mux2to1_32bit
 
 MUX_2: mux2to1_32bit
  port map(
-    A => SIPO_out(23 downto 16),
+    A => "00000000" & SIPO_out(23 downto 16) & "0000000000000000",
     B => "00000000000000000000000000000000",
     Sel => Z_fromBus,
     Data => second_4Byte
@@ -187,7 +187,7 @@ MUX_2: mux2to1_32bit
 
 MUX_3: mux2to1_32bit
  port map(
-    A => SIPO_out(15 downto 8),
+    A => "0000000000000000"& SIPO_out(15 downto 8) & "00000000",
     B => "00000000000000000000000000000000",
     Sel => Z_fromBus,
     Data => third_4Byte
@@ -195,7 +195,7 @@ MUX_3: mux2to1_32bit
 
 MUX_4: mux2to1_32bit
  port map(
-    A => SIPO_out(7 downto 0),
+    A => "000000000000000000000000"&SIPO_out(7 downto 0),
     B => "00000000000000000000000000000000",
     Sel => Z_fromBus,
     Data => fourth_4byte
