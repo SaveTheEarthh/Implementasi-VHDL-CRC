@@ -107,7 +107,7 @@ begin
                 if is_4 = '0' and is_end = '0' then
                     next_state <= S_Transition;
                 elsif is_end = '1' then
-                    next_state <= S_Transition;
+                    next_state <= S_Done;
                 elsif is_4 = '1' and is_end = '0' then
                     next_state <= S_Next4Byte;
                 end if;
@@ -146,7 +146,7 @@ begin
 
             -- STATE: HITUNG PAKET LANJUTAN (Looping)
             when S_Done =>
-                en_regis <= '0'; -- Bersihkan SIPO
+                en_regis <= '1'; -- Bersihkan SIPO
                 Chunk_ctrl <= '0';
                 Feedback_ctrl <= '0';
                 Output_ctrl <= '1';
