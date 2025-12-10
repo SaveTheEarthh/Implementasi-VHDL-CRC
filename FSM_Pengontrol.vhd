@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+-- FSM oke, udah di simul sesuai
 entity CRC_Controller is
     Port ( 
         -- INPUT (Dari Luar / Datapath)
