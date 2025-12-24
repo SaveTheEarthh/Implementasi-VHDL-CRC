@@ -13,9 +13,8 @@ entity CRC_Controller is
         feedback_ctrl   : out STD_LOGIC; -- MUX Kanan
         sel_out_xor     : out STD_LOGIC; -- MUX Atas Register
         en_regis        : out STD_LOGIC; -- Clock Enable Register
-        Output_ctrl        : out STD_LOGIC; -- Clock Enable Register
         Reset        : out STD_LOGIC; -- Clock Enable Register
-        Z_fromBus        : out STD_LOGIC -- Clock Enable Register
+        Sel_PIPO        : out STD_LOGIC -- Clock Enable Register
     );
 end CRC_Controller;
 
@@ -67,14 +66,13 @@ begin
                 en_regis <= '1'; -- Bersihkan SIPO
                 Chunk_ctrl <= '0';
                 Feedback_ctrl <= '1';
-                Output_ctrl <= '0';
-                Z_fromBus <= '0';
-                sel_out_xor <= '1';
+                Sel_PIPO <= '1';
+                sel_out_xor <= '0';
                 Reset <= '0';
                 -- Pindah ke tunggu data pertama
-                if is_4 = '1' then
+                if is_4 = '1' and is_end = '0' then
                     next_state <= S_First4Byte;
-                else
+                elsif is_end = '1' then
                     next_state <= S_IDLE;
                 end if;
 
@@ -83,15 +81,14 @@ begin
                 en_regis <= '1'; -- Bersihkan SIPO
                 Chunk_ctrl <= '0';
                 Feedback_ctrl <= '1';
-                Output_ctrl <= '0';
-                Z_fromBus <= '1';
+                Sel_PIPO <= '0';
                 sel_out_xor <= '1';
                 Reset <= '1';
                 -- Diam di sini sampai SIPO penuh
                 if is_end = '1' then
                     next_state <= S_DONE;
                 else
-                    next_state <= S_Transition;
+                    next_state <= S_Buffer;
                 end if;
 
             -- STATE: HITUNG PAKET PERTAMA (Inisialisasi)
@@ -99,13 +96,12 @@ begin
                 en_regis <= '1'; -- Bersihkan SIPO
                 Chunk_ctrl <= '1';
                 Feedback_ctrl <= '0';
-                Output_ctrl <= '0';
-                Z_fromBus <= '1';
+                Sel_PIPO <= '0';
                 sel_out_xor <= '1';
                 Reset <= '0';
                 -- Diam di sini sampai SIPO penuh
                 if is_4 = '0' and is_end = '0' then
-                    next_state <= S_Transition;
+                    next_state <= S_Buffer;
                 elsif is_end = '1' then
                     next_state <= S_Done;
                 elsif is_4 = '1' and is_end = '0' then
@@ -113,33 +109,31 @@ begin
                 end if;
             -- STATE: MENUNGGU 4 BYTE SELANJUTNYA
             when S_Next4Byte =>
-                en_regis <= '0'; -- Bersihkan SIPO
+                en_regis <= '1'; -- Bersihkan SIPO
                 Chunk_ctrl <= '0';
                 Feedback_ctrl <= '0';
-                Output_ctrl <= '0';
-                Z_fromBus <= '1';
+                Sel_PIPO <= '1';
                 sel_out_xor <= '1';
                 Reset <= '1';
                 -- Diam di sini sampai SIPO penuh
-                if is_4 = '0' and is_end = '0' then
-                    next_state <= S_Transition;
-                elsif is_end = '1' then
-                    next_state <= S_Done;
-                else
+                if is_end = '0' then
                     next_state <= S_Buffer;
+                else
+                    next_state <= S_Done;
                 end if;
             
              when S_Buffer =>
                 en_regis <= '1'; -- Bersihkan SIPO
                 Chunk_ctrl <= '0';
-                Feedback_ctrl <= '0';
-                Output_ctrl <= '0';
-                Z_fromBus <= '1';
+                Feedback_ctrl <= '1';
+                Sel_PIPO <= '0';
                 sel_out_xor <= '0';
                 Reset <= '0';
                 -- Diam di sini sampai SIPO penuh
-                if is_end = '0' then
-                    next_state <= S_Transition;
+                if is_4 = '0' and is_end = '0' then
+                    next_state <=S_Buffer;
+                elsif is_4 = '1' and is_end = '0' then
+                    next_state <= S_Next4Byte;
                 else
                     next_state <= S_Done;
                 end if;
@@ -149,8 +143,7 @@ begin
                 en_regis <= '1'; -- Bersihkan SIPO
                 Chunk_ctrl <= '0';
                 Feedback_ctrl <= '0';
-                Output_ctrl <= '1';
-                Z_fromBus <= '0';
+                Sel_PIPO <= '0';
                 sel_out_xor <= '1';
                 Reset <= '1';
                 -- Diam di sini sampai SIPO penuh

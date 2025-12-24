@@ -8,7 +8,7 @@ use ieee.numeric_std.all;
 entity CRCtransmitter is
 	port	(
 				input_data		:in		std_logic_vector (7 downto 0);	-- data A
-                data_crc		:out		STD_LOGIC_VECTOR(31 downto 0); -- data B
+                crc_out		: out  STD_LOGIC_VECTOR(31 downto 0); -- data B
                 data_valid  :in     std_logic;
 				clk	:		in		std_logic-- sinyal Clockian
 			);
@@ -16,8 +16,8 @@ end CRCtransmitter;
 
 -- Define architecture
 architecture rtl of CRCtransmitter is
-    signal is_corrupt_temp, Sel, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, Output_ctrl, reset, Z_fromBus: STD_LOGIC;
-    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO: STD_LOGIC_VECTOR(31 downto 0);
+    signal Sel_PIPO, is_corrupt_temp, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, reset: STD_LOGIC;
+    signal  data_after_mux_PIPO, output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO: STD_LOGIC_VECTOR(31 downto 0);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);
     signal first_byte, second_byte, third_byte, fourth_byte: STD_LOGIC_VECTOR(7 downto 0);
     signal padded_counter : std_logic_vector(31 downto 0);
@@ -38,14 +38,6 @@ component mux2to1_8bit is
 				B		:		in		std_logic_vector (7 downto 0);	-- data B
 				Sel	:		in		std_logic;								-- selector
 				Data	:		out	std_logic_vector (7 downto 0)		-- luaran data
-			);
-end component;
-
-component demux_1to2 
-	port	(
-				F : in std_logic_vector(31 downto 0);
-                S: in STD_LOGIC;
-                A,B: out std_logic_vector(31 downto 0)
 			);
 end component;
 
@@ -100,10 +92,9 @@ component CRC_Controller
         chunk_ctrl      : out STD_LOGIC; -- MUX Kiri
         feedback_ctrl   : out STD_LOGIC; -- MUX Kanan
         sel_out_xor     : out STD_LOGIC; -- MUX Atas Register
-        en_regis        : out STD_LOGIC; -- Clock Enable Register
-        Output_ctrl        : out STD_LOGIC; -- Clock Enable Register
+        en_regis        : out STD_LOGIC; -- Clock Enable Register -- Clock Enable Register
         Reset        : out STD_LOGIC; -- Clock Enable Register
-        Z_fromBus        : out STD_LOGIC -- Clock Enable Register
+        Sel_PIPO        : out STD_LOGIC -- Clock Enable Register
     );
 end component;
 
@@ -163,9 +154,8 @@ CTRL: CRC_Controller
     feedback_ctrl => feedback_ctrl,
     sel_out_xor => sel_out_xor,
     en_regis => en_regis,
-    Output_ctrl => Output_ctrl,
     Reset => Reset,
-    Z_fromBus => Z_fromBus
+    Sel_PIPO => Sel_PIPO
 );
 
 first_byte <= SIPO_out(31 downto 24);
@@ -200,15 +190,23 @@ LUT_4_inst: LUT_4
 
 LUT_Prev_inst: LUT_Prev
  port map(
-    prev_crc_in => data_after_demux,
+    prev_crc_in => data_after_regis32bit,
     lut_prev_out => data_after_LUT_prev
 );
 
 output_LUT <= out_LUT1 xor out_LUT2 xor out_LUT3 xor out_LUT4;
 
-REGIS_PIPO_atas: register32bitPIPO
+MUX_PIPO: mux2to1_32bit
  port map(
     A => output_LUT,
+    B => data_after_PIPO,
+    Sel => Sel_PIPO,
+    Data => data_after_mux_PIPO
+);
+
+REGIS_PIPO_atas: register32bitPIPO
+ port map(
+    A => data_after_mux_PIPO,
     En => '1',
     Res => '0',
     Clk => Clk,
@@ -234,20 +232,13 @@ MUX_B: mux2to1_32bit
 MUX_C: mux2to1_32bit
  port map(
     A => data_after_XOR,
-    B => data_after_demux,
+    B => data_after_regis32bit,
     Sel => sel_out_xor,
     Data => data_after_muxC
 );
 
-DEMUX: demux_1to2
- port map(
-    F => data_after_regis32bit,
-    S => Output_ctrl,
-    A => output_data,
-    B => data_after_demux
-);
-
-data_crc <= output_data;
+output_data <= data_after_regis32bit;
+crc_out <= output_data;
 
 REGIS_PIPO_bawah: register32bitPIPO
  port map(
@@ -279,5 +270,7 @@ comparator_end: comparator
         inp_B => x"0000000D",    -- 13 is 'Enter'
         equal => is_end
     );
+
+
     end rtl;
 	
