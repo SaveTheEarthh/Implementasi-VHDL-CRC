@@ -68,9 +68,9 @@ begin
                 Chunk_ctrl <= '0';
                 Feedback_ctrl <= '1';
                 Output_ctrl <= '0';
-                Z_fromBus <= '1';
+                Z_fromBus <= '0';
                 sel_out_xor <= '1';
-                Reset <= '1';
+                Reset <= '0';
                 -- Pindah ke tunggu data pertama
                 if is_4 = '1' then
                     next_state <= S_First4Byte;
@@ -109,7 +109,7 @@ begin
                 elsif is_end = '1' then
                     next_state <= S_Done;
                 elsif is_4 = '1' and is_end = '0' then
-                    next_state <= S_Next4Byte;
+                    next_state <= S_Next4Byte  ;
                 end if;
             -- STATE: MENUNGGU 4 BYTE SELANJUTNYA
             when S_Next4Byte =>

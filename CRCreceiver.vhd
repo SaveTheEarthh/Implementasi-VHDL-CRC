@@ -17,7 +17,7 @@ end CRCreceiver;
 -- Define architecture
 architecture rtl of CRCreceiver is
     signal is_corrupt_temp, Sel, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, Output_ctrl, reset, Z_fromBus: STD_LOGIC;
-    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO, A, B, Data: STD_LOGIC_VECTOR(31 downto 0);
+    signal output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_demux, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO: STD_LOGIC_VECTOR(31 downto 0);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);
     signal first_byte, second_byte, third_byte, fourth_byte: STD_LOGIC_VECTOR(7 downto 0);
     signal padded_counter : std_logic_vector(31 downto 0);
@@ -136,6 +136,16 @@ end component;
 
 begin
 
+SIPO_atas: Register32BitSIPO
+ port map(
+    clk => clk,
+    reset => '0',
+    uart_data => input_data,
+    uart_valid => data_valid,
+    chunk_data => SIPO_out
+);
+
+
 data_after_XOR <= data_after_muxA xor data_after_muxB;
 
 -- Correct padding: 28 zeros + 4 bit counter = 32 bits
@@ -158,46 +168,11 @@ CTRL: CRC_Controller
     Z_fromBus => Z_fromBus
 );
 
-SIPO_atas: Register32BitSIPO
- port map(
-    clk => clk,
-    reset => '0',
-    uart_data => input_data,
-    uart_valid => data_valid,
-    chunk_data => SIPO_out
-);
+first_byte <= SIPO_out(31 downto 24);
+second_byte <= SIPO_out(23 downto 16);
+third_byte <= SIPO_out(15 downto 8);
+fourth_byte <= SIPO_out(7 downto 0);
 
-MUX_1: mux2to1_8bit
- port map(
-    A => SIPO_out(31 downto 24),
-    B => "00000000",
-    Sel => Z_fromBus,
-    Data => first_byte
-);
-
-MUX_2: mux2to1_8bit
- port map(
-    A => SIPO_out(23 downto 16),
-    B => "00000000",
-    Sel => Z_fromBus,
-    Data => second_byte
-);
-
-MUX_3: mux2to1_8bit
- port map(
-    A => SIPO_out(15 downto 8),
-    B => "00000000",
-    Sel => Z_fromBus,
-    Data => third_byte
-);
-
-MUX_4: mux2to1_8bit
- port map(
-    A => SIPO_out(7 downto 0),
-    B => "00000000",
-    Sel => Z_fromBus,
-    Data => fourth_byte
-);
 
 LUT_1_inst: LUT_1
  port map(
@@ -292,7 +267,7 @@ counter: counter4bit
 comparator_4: comparator
     port map(
         inp_A => padded_counter, -- Clean signal
-        inp_B => x"00000004",    -- Hex is cleaner than "000..100"
+        inp_B => "00000000000000000000000000000100",    -- Hex is cleaner than "000..100"
         equal => is_4
     );
 
