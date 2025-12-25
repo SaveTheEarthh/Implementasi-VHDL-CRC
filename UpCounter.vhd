@@ -41,7 +41,7 @@ begin
 		if rising_edge(Clk) then
 			-- jika nilai reset adalah 1, maka hasil penghitungan menjadi 0.
 			if (Res = '1') then
-				Count_temp <= "0001";
+				Count_temp <= "0000";
 			else
 			-- jika nilai reset adalah 0, maka...
 				-- jika nilai enable adalah 1, maka hasil penghitungan sementara ditambah 1.

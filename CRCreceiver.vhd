@@ -7,16 +7,20 @@ use ieee.numeric_std.all;
 -- Define entity
 entity CRCreceiver is
 	port	(
+                reset : in std_logic;
 				input_data		:in		std_logic_vector (7 downto 0);	-- data A
                 is_corrupt		:out		std_logic; -- data B
                 data_valid  :in     std_logic;
-				clk	:		in		std_logic-- sinyal Clockian
+				clk	:		in		std_logic; -- sinyal Clockian
+                rx_debug_data : out std_logic_vector(31 downto 0) -- ADD THIS
 			);
 end CRCreceiver;
 
 -- Define architecture
 architecture rtl of CRCreceiver is
-    signal Sel_PIPO, is_corrupt_temp, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis, reset: STD_LOGIC;
+    signal Sel_PIPO, is_corrupt_temp, is_4, is_end, chunk_ctrl, feedback_ctrl, sel_out_xor, en_regis: STD_LOGIC;
+    signal fsm_counter_reset : STD_LOGIC;
+    signal combined_counter_reset : STD_LOGIC; -- NEW SIGNAL
     signal  data_after_mux_PIPO, output_data, out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_XOR, data_after_muxC, data_after_muxB, data_after_LUT_prev, data_after_muxA, data_after_PIPO: STD_LOGIC_VECTOR(31 downto 0);
     signal hasil_comparator_4: STD_LOGIC_VECTOR(3 downto 0);
     signal first_byte, second_byte, third_byte, fourth_byte: STD_LOGIC_VECTOR(7 downto 0);
@@ -81,7 +85,7 @@ component counter4bit
 			);
 end component;
 
-component CRC_Controller
+component FSM_Pengontrol
   Port ( 
         -- INPUT (Dari Luar / Datapath)
         clk             : in  STD_LOGIC;
@@ -127,6 +131,8 @@ end component;
 
 begin
 
+combined_counter_reset <= fsm_counter_reset OR reset;
+
 SIPO_atas: Register32BitSIPO
  port map(
     clk => clk,
@@ -145,7 +151,7 @@ padded_counter <= "0000000000000000000000000000" & hasil_comparator_4;
 -- Correct padding for input data check (checking against 32-bit comparator)
 padded_input   <= "000000000000000000000000" & input_data;
 
-CTRL: CRC_Controller
+CTRL: FSM_Pengontrol
  port map(
     clk => clk,
     is_4 => is_4,
@@ -154,7 +160,7 @@ CTRL: CRC_Controller
     feedback_ctrl => feedback_ctrl,
     sel_out_xor => sel_out_xor,
     en_regis => en_regis,
-    Reset => Reset,
+    Reset => fsm_counter_reset,
     Sel_PIPO => Sel_PIPO
 );
 
@@ -196,27 +202,10 @@ LUT_Prev_inst: LUT_Prev
 
 output_LUT <= out_LUT1 xor out_LUT2 xor out_LUT3 xor out_LUT4;
 
-MUX_PIPO: mux2to1_32bit
- port map(
-    A => output_LUT,
-    B => data_after_PIPO,
-    Sel => Sel_PIPO,
-    Data => data_after_mux_PIPO
-);
-
-REGIS_PIPO_atas: register32bitPIPO
- port map(
-    A => data_after_mux_PIPO,
-    En => '1',
-    Res => '0',
-    Clk => Clk,
-    Data => data_after_PIPO
-);
-
 MUX_A: mux2to1_32bit
  port map(
     A => "00000000000000000000000000000000",
-    B => data_after_PIPO,
+    B => output_LUT,       -- CHANGED: Use output_LUT directly (Bypass Register)
     Sel => chunk_ctrl,
     Data => data_after_muxA
 );
@@ -242,17 +231,19 @@ output_data <= data_after_regis32bit;
 
 REGIS_PIPO_bawah: register32bitPIPO
  port map(
-    A => data_after_muxC,
-    En => en_regis,
-    Res => '0',
+    A   => data_after_muxC,
+    En  => en_regis,
+    Res => reset, -- FIXED: Remove 'reset' connection to prevent erasure [cite: 93]
     Clk => Clk,
     Data => data_after_regis32bit
 );
 
+rx_debug_data <= data_after_regis32bit;
+
 counter: counter4bit 
 	port map(
 		En	=> data_valid,
-		Res	=> reset,
+		Res	=> combined_counter_reset,
 		Clk	=> Clk,
 		Count => hasil_comparator_4
 	);

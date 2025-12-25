@@ -1,155 +1,73 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
--- FSM oke, udah di simul sesuai
-entity CRC_Controller is
+
+entity FSM_Pengontrol is
     Port ( 
-        -- INPUT (Dari Luar / Datapath)
-        clk             : in  STD_LOGIC;
-        is_4      : in  STD_LOGIC; -- Sinyal dari SIPO (Chunk Ready)
-        is_end   : in  STD_LOGIC; -- Sinyal deteksi akhir (misal tombol/timeout)
-
-        -- OUTPUT (Ke Datapath)
-        chunk_ctrl      : out STD_LOGIC; -- MUX Kiri
-        feedback_ctrl   : out STD_LOGIC; -- MUX Kanan
-        sel_out_xor     : out STD_LOGIC; -- MUX Atas Register
-        en_regis        : out STD_LOGIC; -- Clock Enable Register
-        Reset        : out STD_LOGIC; -- Clock Enable Register
-        Sel_PIPO        : out STD_LOGIC -- Clock Enable Register
+        clk           : in  STD_LOGIC;
+        is_4          : in  STD_LOGIC; 
+        is_end        : in  STD_LOGIC; 
+        chunk_ctrl    : out STD_LOGIC; 
+        feedback_ctrl : out STD_LOGIC; 
+        sel_out_xor   : out STD_LOGIC; 
+        en_regis      : out STD_LOGIC; 
+        Reset         : out STD_LOGIC; -- Corrected to Active-High for Counter
+        Sel_PIPO      : out STD_LOGIC 
     );
-end CRC_Controller;
+end FSM_Pengontrol;
 
-architecture Behavioral of CRC_Controller is
-
-    -- Definisi State
-    type state_type is (
-        S_IDLE,         -- Reset & Menunggu Data Pertama
-        s_First4Byte,   -- Menunggu SIPO penuh (4 byte pertama)
-        S_Transition,   -- Hitung Iterasi Pertama (Pakai Seed)
-        S_Buffer,    -- Menunggu SIPO penuh (4 byte selanjutnya)
-        S_Next4Byte,    -- Hitung Iterasi Lanjut (Pakai Feedback)
-        S_Done          -- Selesai, Output Valid
-    );
-    
+architecture Behavioral of FSM_Pengontrol is
+    type state_type is (S_IDLE, S_FIRST_CHUNK, S_BUFFER, S_NEXT_CHUNK, S_DONE);
     signal current_state, next_state : state_type;
-
 begin
-
-    -- =========================================================
-    -- PROSES 1: SEQUENTIAL (Memori State)
-    -- =========================================================
     process(clk)
     begin
-        if rising_edge(clk) then
+        if rising_edge(clk) then 
             current_state <= next_state;
-            end if;
-           end process;
-
-    -- =========================================================
-    -- PROSES 2: COMBINATIONAL (Logika Transisi & Output)
-    -- =========================================================
-    process(current_state, is_4, is_end)
-    begin
-        -- Default Values (Untuk mencegah Latch & Glitch)
-        -- Kondisi "HOLD" yang aman:
-        chunk_ctrl    <= '1'; -- Default blokir SIPO (Pilih 0)
-        feedback_ctrl <= '1'; -- Default Feedback
-        sel_out_xor   <= '0'; -- Default Loopback (Hold)
-        en_regis      <= '1'; -- Default Register Mati
-        reset    <= '1';
-        
-        next_state <= current_state; -- Default stay
-
-        case current_state is
-            
-            -- STATE: IDLE
-            when S_IDLE =>
-                en_regis <= '1'; -- Bersihkan SIPO
-                Chunk_ctrl <= '0';
-                Feedback_ctrl <= '1';
-                Sel_PIPO <= '1';
-                sel_out_xor <= '0';
-                Reset <= '0';
-                -- Pindah ke tunggu data pertama
-                if is_4 = '1' and is_end = '0' then
-                    next_state <= S_First4Byte;
-                elsif is_end = '1' then
-                    next_state <= S_IDLE;
-                end if;
-
-            -- STATE: MENUNGGU 4 BYTE PERTAMA
-            when S_First4Byte =>
-                en_regis <= '1'; -- Bersihkan SIPO
-                Chunk_ctrl <= '0';
-                Feedback_ctrl <= '1';
-                Sel_PIPO <= '0';
-                sel_out_xor <= '1';
-                Reset <= '1';
-                -- Diam di sini sampai SIPO penuh
-                if is_end = '1' then
-                    next_state <= S_DONE;
-                else
-                    next_state <= S_Buffer;
-                end if;
-
-            -- STATE: HITUNG PAKET PERTAMA (Inisialisasi)
-            when S_Transition =>
-                en_regis <= '1'; -- Bersihkan SIPO
-                Chunk_ctrl <= '1';
-                Feedback_ctrl <= '0';
-                Sel_PIPO <= '0';
-                sel_out_xor <= '1';
-                Reset <= '0';
-                -- Diam di sini sampai SIPO penuh
-                if is_4 = '0' and is_end = '0' then
-                    next_state <= S_Buffer;
-                elsif is_end = '1' then
-                    next_state <= S_Done;
-                elsif is_4 = '1' and is_end = '0' then
-                    next_state <= S_Next4Byte  ;
-                end if;
-            -- STATE: MENUNGGU 4 BYTE SELANJUTNYA
-            when S_Next4Byte =>
-                en_regis <= '1'; -- Bersihkan SIPO
-                Chunk_ctrl <= '0';
-                Feedback_ctrl <= '0';
-                Sel_PIPO <= '1';
-                sel_out_xor <= '1';
-                Reset <= '1';
-                -- Diam di sini sampai SIPO penuh
-                if is_end = '0' then
-                    next_state <= S_Buffer;
-                else
-                    next_state <= S_Done;
-                end if;
-            
-             when S_Buffer =>
-                en_regis <= '1'; -- Bersihkan SIPO
-                Chunk_ctrl <= '0';
-                Feedback_ctrl <= '1';
-                Sel_PIPO <= '0';
-                sel_out_xor <= '0';
-                Reset <= '0';
-                -- Diam di sini sampai SIPO penuh
-                if is_4 = '0' and is_end = '0' then
-                    next_state <=S_Buffer;
-                elsif is_4 = '1' and is_end = '0' then
-                    next_state <= S_Next4Byte;
-                else
-                    next_state <= S_Done;
-                end if;
-
-            -- STATE: HITUNG PAKET LANJUTAN (Looping)
-            when S_Done =>
-                en_regis <= '1'; -- Bersihkan SIPO
-                Chunk_ctrl <= '0';
-                Feedback_ctrl <= '0';
-                Sel_PIPO <= '0';
-                sel_out_xor <= '1';
-                Reset <= '1';
-                -- Diam di sini sampai SIPO penuh
-                next_state <= S_idle;
-
-        end case;
+        end if;
     end process;
 
+    process(current_state, is_4, is_end)
+    begin
+        -- DEFAULT VALUES: Standardize to B-Input selection (Active Paths)
+        chunk_ctrl    <= '1';    feedback_ctrl <= '1';
+        sel_out_xor   <= '1';    en_regis      <= '0';
+        Reset         <= '0';    Sel_PIPO      <= '1';
+        next_state    <= current_state;
+
+        case current_state is
+            when S_IDLE =>
+                Reset <= '1'; -- Keep counter cleared until data arrives
+                if is_4 = '1' then next_state <= S_FIRST_CHUNK; 
+                else Reset <= '0'; end if;
+
+            when S_FIRST_CHUNK =>
+                -- Pulse counter reset to prepare for next 4 bytes [cite: 105]
+                Reset         <= '1'; 
+                chunk_ctrl    <= '1'; -- Select New Data (Input B) [cite: 106]
+                feedback_ctrl <= '0'; -- Select Initial Zeros (Input A) [cite: 107]
+                sel_out_xor   <= '0'; -- Select XOR Path (Input A) [cite: 108]
+                en_regis      <= '1'; -- Capture into register 
+                next_state    <= S_BUFFER;
+
+            when S_BUFFER =>
+                Reset <= '0'; -- Allow counter to work [cite: 111]
+                -- CRITICAL FIX: Put register in Hold Mode by selecting its own output
+                -- This prevents it from sampling XOR zeros during the wait [cite: 112]
+                sel_out_xor <= '1'; -- Select Feedback Path (Input B)
+                en_regis    <= '0';
+                if is_end = '1' then next_state <= S_DONE;
+                elsif is_4 = '1' then next_state <= S_NEXT_CHUNK; end if;
+
+            when S_NEXT_CHUNK =>
+                Reset         <= '1'; -- Clear counter for next batch [cite: 117]
+                chunk_ctrl    <= '1'; -- Select Data
+                feedback_ctrl <= '1'; -- Select Feedback Path (Input B) [cite: 119]
+                sel_out_xor   <= '0'; -- Select XOR Result Path (Input A) [cite: 120]
+                en_regis      <= '1'; -- Capture accumulated CRC [cite: 121]
+                next_state    <= S_BUFFER;
+
+            when S_DONE =>
+                if is_end = '0' then next_state <= S_IDLE; end if;
+        end case;
+    end process;
 end Behavioral;
