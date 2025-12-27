@@ -23,14 +23,6 @@ architecture rtl of CRCreceiver is
     signal padded_counter : std_logic_vector(31 downto 0);
 signal padded_input   : std_logic_vector(31 downto 0);
 
-component mux2to1_8bit is
-	port	(
-				A		:		in		std_logic_vector (7 downto 0);	-- data A
-				B		:		in		std_logic_vector (7 downto 0);	-- data B
-				Sel	:		in		std_logic;								-- selector
-				Data	:		out	std_logic_vector (7 downto 0)		-- luaran data
-			);
-end component;
 
 component register32bitPIPO 
 	port	(
@@ -79,8 +71,7 @@ component CRC_Controller
         is_4      : in  STD_LOGIC; -- Sinyal dari SIPO (Chunk Ready) -- Sinyal deteksi akhir (misal tombol/timeout)
         is_ready      : in  STD_LOGIC;
         -- OUTPUT (Ke Datapath)
-        en_regis        : out STD_LOGIC; -- Clock Enable Register -- Clock Enable Register
-        Reset        : out STD_LOGIC -- Clock Enable Register
+        en_regis        : out STD_LOGIC -- Clock Enable Register -- Clock Enable Register
     );
 end component;
 
@@ -128,8 +119,7 @@ CTRL: CRC_Controller
     clk => clk,
     is_4 => is_4,
     is_ready => is_ready,
-    en_regis => en_regis,
-    Reset => Reset
+    en_regis => en_regis
 );
 
 first_byte <= SIPO_out(31 downto 24);

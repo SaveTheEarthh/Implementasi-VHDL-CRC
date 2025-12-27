@@ -9,8 +9,7 @@ entity CRC_Controller is
         is_ready  :in  STD_LOGIC;
 
         -- OUTPUT (Ke Datapath)
-        en_regis        : out STD_LOGIC; -- Clock Enable Register
-        Reset        : out STD_LOGIC -- Clock Enable Register
+        en_regis        : out STD_LOGIC -- Clock Enable Register-- Clock Enable Register
     );
 end CRC_Controller;
 
@@ -48,7 +47,6 @@ begin
             -- STATE: IDLE
             when S_IDLE =>
                 en_regis <= '0'; -- Bersihkan SIPO
-                Reset <= '0';
                 -- Pindah ke tunggu data pertama
                 if is_ready = '1' then
                     next_state <= s_buffer;
@@ -57,16 +55,14 @@ begin
                 end if;
             when s_buffer =>
                 en_regis <= '1';
-                reset <= '0';
                 if is_4 = '1' then
                     next_state <= s_process;
                 else
-                    next_state <= S_IDLE;
+                    next_state <= s_buffer;
                 end if;
             -- STATE: MENUNGGU 4 BYTE PERTAMA
             when s_process =>
                 en_regis <= '0'; -- Bersihkan SIPO
-                Reset <= '1';
                 -- Diam di sini sampai SIPO penuh
                 if is_4 = '0' then
                     next_state <= S_IDLE;
