@@ -33,8 +33,6 @@ add wave -divider "Top Level Inputs"
 add wave -noupdate -color white /tb_TopLevel_CRC/clk
 add wave -noupdate -color white /tb_TopLevel_CRC/reset
 add wave -noupdate -color yellow /tb_TopLevel_CRC/btn_tick
-add wave -noupdate -radix hex /tb_TopLevel_CRC/input_data
-add wave -noupdate /tb_TopLevel_CRC/data_valid
 
 add wave -divider "Top Level Outputs"
 add wave -noupdate -radix hex /tb_TopLevel_CRC/data_crc
@@ -46,4 +44,4 @@ add wave -noupdate /tb_TopLevel_CRC/uut/valid_for_tx
 add wave -noupdate /tb_TopLevel_CRC/uut/valid_for_rx
 
 # 7. Run Simulation
-run 6500 ns
+run 75 ms
