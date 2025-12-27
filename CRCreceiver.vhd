@@ -8,9 +8,10 @@ use ieee.numeric_std.all;
 entity CRCreceiver is
 	port	(
 				input_data		:in		std_logic_vector (7 downto 0);	-- data A
-                is_corrupt		: out  std_logic; -- data B
                 data_valid  :in     std_logic;
-				clk	:		in		std_logic-- sinyal Clockian
+				clk	:		in		std_logic;-- sinyal Clockian
+                is_corrupt		: out  std_logic;
+                crc_out		: out  STD_LOGIC_VECTOR(31 downto 0) -- data B -- data B
 			);
 end CRCreceiver;
 
@@ -197,6 +198,8 @@ comparator_ready: comparator
         equal => is_ready
     );
 
+    crc_out <= data_after_regis32bit;
+    
 comparator_zero: comparator
     port map(
         inp_A => data_after_regis32bit, -- Clean signal
