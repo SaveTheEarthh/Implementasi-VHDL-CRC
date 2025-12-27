@@ -10,13 +10,14 @@ entity CRCtransmitter is
 				input_data		:in		std_logic_vector (7 downto 0);	-- data A
                 crc_out		: out  STD_LOGIC_VECTOR(31 downto 0); -- data B
                 data_valid  :in     std_logic;
+                reset       : in std_logic;
 				clk	:		in		std_logic-- sinyal Clockian
 			);
 end CRCtransmitter;
 
 -- Define architecture
 architecture rtl of CRCtransmitter is
-    signal is_ready, is_4, en_regis, reset: STD_LOGIC;
+    signal is_ready, is_4, en_regis: STD_LOGIC;
     signal  out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_XOR, data_after_LUT_prev: STD_LOGIC_VECTOR(31 downto 0);
     signal byteCount: STD_LOGIC_VECTOR(2 downto 0);
     signal first_byte, second_byte, third_byte, fourth_byte: STD_LOGIC_VECTOR(7 downto 0);
@@ -58,7 +59,8 @@ end component;
 component bytecounter 
 	port	(
 				clk             : in  STD_LOGIC;
-                data_valid      : in  STD_LOGIC; -- Sinyal dari SIPO (Chunk Ready) -- Sinyal deteksi akhir (misal tombol/timeout)
+                data_valid      : in  STD_LOGIC;
+                reset           : in std_logic; -- Sinyal dari SIPO (Chunk Ready) -- Sinyal deteksi akhir (misal tombol/timeout)
         -- OUTPUT (Ke Datapath)
                 currentCount    : out STD_LOGIC_VECTOR(2 downto 0)
 			);
@@ -183,6 +185,7 @@ counter: byteCounter
 	port map(
         Clk	=> Clk,
 		data_valid	=> data_valid,
+        reset => reset,
 		currentCount => byteCount
 	);
 

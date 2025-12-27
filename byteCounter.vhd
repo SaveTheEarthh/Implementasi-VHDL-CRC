@@ -5,7 +5,8 @@ entity byteCounter is
     Port ( 
         -- INPUT (Dari Luar / Datapath)
         clk             : in  STD_LOGIC;
-        data_valid      : in  STD_LOGIC; -- Sinyal dari SIPO (Chunk Ready) -- Sinyal deteksi akhir (misal tombol/timeout)
+        data_valid      : in  STD_LOGIC;
+        reset           : in STD_LOGIC; -- Sinyal dari SIPO (Chunk Ready) -- Sinyal deteksi akhir (misal tombol/timeout)
 
         -- OUTPUT (Ke Datapath)
         currentCount    : out STD_LOGIC_VECTOR(2 downto 0)
