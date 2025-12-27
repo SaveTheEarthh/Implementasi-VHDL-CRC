@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fsm>
+  <states>
+    <state>
+      <values>data_valid_tx = 1, data_valid_rx = 0</values>
+      <position x="-180.0" y="0.0"/>
+      <number>0</number>
+      <name>CRC_Transmitter</name>
+      <radius>90</radius>
+      <isInitial>true</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>data_valid_tx  = 0, data_valid_rx = 1</values>
+      <position x="240.0" y="0.0"/>
+      <number>1</number>
+      <name>CRC_Receiver</name>
+      <radius>90</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+  </states>
+  <transitions>
+    <transition>
+      <values></values>
+      <position x="30.0" y="-103.412605"/>
+      <fromState reference="../../../states/state"/>
+      <toState reference="../../../states/state[2]"/>
+      <condition>btn_tick = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="-111.0" y="-153.0"/>
+      <fromState reference="../../../states/state"/>
+      <toState reference="../../../states/state"/>
+      <condition>reset = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="30.0" y="114.27213"/>
+      <fromState reference="../../../states/state[2]"/>
+      <toState reference="../../../states/state"/>
+      <condition>reset = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="30.0" y="-28.0"/>
+      <fromState reference="../../../states/state[2]"/>
+      <toState reference="../../../states/state"/>
+      <condition>btn_tick = 1</condition>
+    </transition>
+  </transitions>
+</fsm>
