@@ -1,0 +1,864 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+Ebytecounter
+Z0 w1766853720
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 0
+Z3 dC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Simul Top LEvel
+Z4 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/byteCounter.vhd
+Z5 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/byteCounter.vhd
+l0
+L4 1
+V>CN]cDHQJQf5ckoEN9A2[0
+!s100 7Zhb=0K5FILlV>6E8h0M32
+Z6 OV;C;2020.1;71
+32
+Z7 !s110 1766853905
+!i10b 1
+Z8 !s108 1766853905.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/byteCounter.vhd|
+Z10 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/byteCounter.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Abehavioral
+R1
+R2
+DEx4 work 11 bytecounter 0 22 >CN]cDHQJQf5ckoEN9A2[0
+!i122 0
+l25
+L16 81
+V=4O_J?79MlMcWPf7zZ9H;0
+!s100 zFoE<;b7Ei=I8nhimK[zJ1
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Ecomparator
+Z13 w1765251109
+Z14 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z15 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+R1
+R2
+!i122 1
+R3
+Z16 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/comparator.vhd
+Z17 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/comparator.vhd
+l0
+L6 1
+VDYA6M26QX@U[lVN2Xze_D3
+!s100 [;>GJkVU<AX]WIU;R?XYZ1
+R6
+32
+R7
+!i10b 1
+R8
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/comparator.vhd|
+Z19 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/comparator.vhd|
+!i113 1
+R11
+R12
+Abhv
+R14
+R15
+R1
+R2
+DEx4 work 10 comparator 0 22 DYA6M26QX@U[lVN2Xze_D3
+!i122 1
+l14
+L13 5
+VT4RAUl]c6=<>BNI;>W;Rg3
+!s100 ?djH1INGURnbE^c`AWSH[0
+R6
+32
+R7
+!i10b 1
+R8
+R18
+R19
+!i113 1
+R11
+R12
+Ecounter4bit
+R0
+Z20 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+R1
+R2
+!i122 21
+R3
+Z21 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/UpCounter.vhd
+Z22 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/UpCounter.vhd
+l0
+Z23 L22 1
+VPSTP5MU?LcO_SXgSnIL:j1
+!s100 C56g]hfYM@dWNJj3G85?12
+R6
+32
+Z24 !s110 1766853907
+!i10b 1
+Z25 !s108 1766853907.000000
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/UpCounter.vhd|
+!s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/UpCounter.vhd|
+!i113 1
+R11
+R12
+Artl
+R20
+R1
+R2
+DEx4 work 11 counter4bit 0 22 PSTP5MU?LcO_SXgSnIL:j1
+!i122 21
+l36
+L32 25
+V5:LdSfSj]^kTZbD<Z2kLh0
+!s100 :nhljTdbKeDHEXE8<L6nC2
+R6
+32
+R24
+!i10b 1
+R25
+R26
+Z27 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/UpCounter.vhd|
+!i113 1
+R11
+R12
+Pcrc32_pkg
+R20
+R1
+R2
+!i122 3
+R0
+R3
+Z28 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRC32_Pkg.vhd
+Z29 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRC32_Pkg.vhd
+l0
+L5 1
+V<TOdZYH[[Bm>;kD7NFJFI3
+!s100 jcb1VP]@<zEzkP8Y:3`[C2
+R6
+32
+b1
+R7
+!i10b 1
+R8
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRC32_Pkg.vhd|
+Z31 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRC32_Pkg.vhd|
+!i113 1
+R11
+R12
+Bbody
+DPx4 work 9 crc32_pkg 0 22 <TOdZYH[[Bm>;kD7NFJFI3
+R20
+R1
+R2
+!i122 3
+l0
+L13 1
+VB]6TTo>nzKNOOZG]?cMdE1
+!s100 ?FG:L=?<giXd8FDE2z[ZW2
+R6
+32
+R7
+!i10b 1
+R8
+R30
+R31
+!i113 1
+R11
+R12
+Ecrc_controller
+Z32 w1766832065
+R1
+R2
+!i122 8
+R3
+Z33 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/FSM_Pengontrol.vhd
+Z34 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/FSM_Pengontrol.vhd
+l0
+L4 1
+VTz^CdE7lG?3I89PkJIiR_0
+!s100 ig]fk<:h89Rigob@o6Q[I0
+R6
+32
+Z35 !s110 1766853906
+!i10b 1
+Z36 !s108 1766853906.000000
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/FSM_Pengontrol.vhd|
+Z38 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/FSM_Pengontrol.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R1
+R2
+DEx4 work 14 crc_controller 0 22 Tz^CdE7lG?3I89PkJIiR_0
+!i122 8
+l27
+L16 64
+V8Vnn?6=SPBb35JBkidz>?3
+!s100 ;aG:n0SONNBkBE]>GejRK1
+R6
+32
+R35
+!i10b 1
+R36
+R37
+R38
+!i113 1
+R11
+R12
+Ecrcreceiver
+R0
+R20
+R1
+R2
+!i122 4
+R3
+Z39 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCreceiver.vhd
+Z40 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCreceiver.vhd
+l0
+L8 1
+VHXeB`J8LongWGS]6FF@H01
+!s100 1X=`XgKdW6OVRK9_z=b_z0
+R6
+32
+R7
+!i10b 1
+R8
+Z41 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCreceiver.vhd|
+Z42 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCreceiver.vhd|
+!i113 1
+R11
+R12
+Artl
+R20
+R1
+R2
+DEx4 work 11 crcreceiver 0 22 HXeB`J8LongWGS]6FF@H01
+!i122 4
+l107
+L19 193
+VE3E3Madn[:3gYkd<MX4:V1
+!s100 BSY_oPg_1JDkWGg?mC>d12
+R6
+32
+R7
+!i10b 1
+R8
+R41
+R42
+!i113 1
+R11
+R12
+Ecrctransmitter
+R0
+R20
+R1
+R2
+!i122 6
+R3
+Z43 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCtransmitter.vhd
+Z44 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCtransmitter.vhd
+l0
+L8 1
+VZ>DDe>hz9g=jVbcd3;GiO3
+!s100 aUn:TjVFQ?L>@mjAmDD^d1
+R6
+32
+R7
+!i10b 1
+R8
+Z45 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCtransmitter.vhd|
+Z46 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/CRCtransmitter.vhd|
+!i113 1
+R11
+R12
+Artl
+R20
+R1
+R2
+DEx4 work 14 crctransmitter 0 22 Z>DDe>hz9g=jVbcd3;GiO3
+!i122 6
+l107
+L19 188
+Vk?HPTG=YdThDEQQ=Pe5zc2
+!s100 JP72`e1ghLPYn>8gdNSPB2
+R6
+32
+R7
+!i10b 1
+R8
+R45
+R46
+!i113 1
+R11
+R12
+Edemux_1to2
+R0
+R1
+R2
+!i122 7
+R3
+Z47 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Demux1To2.vhd
+Z48 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Demux1To2.vhd
+l0
+L4 1
+V<dB8hJzZgFl4onoIlV<oC0
+!s100 OLgneEk8N2P6S1dWo0TC31
+R6
+32
+R35
+!i10b 1
+R8
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Demux1To2.vhd|
+Z50 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Demux1To2.vhd|
+!i113 1
+R11
+R12
+Abhv
+R1
+R2
+DEx4 work 10 demux_1to2 0 22 <dB8hJzZgFl4onoIlV<oC0
+!i122 7
+l14
+L13 12
+Vd47YQB60HQb<1U?YmA7l11
+!s100 >PRL<jlZZozI]nQ7[Wczf2
+R6
+32
+R35
+!i10b 1
+R8
+R49
+R50
+!i113 1
+R11
+R12
+Elut_1
+Z51 w1765438570
+R20
+R1
+R2
+!i122 9
+R3
+Z52 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_1.vhd
+Z53 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_1.vhd
+l0
+L6 1
+V9dHXbgGWVP@dbKJ1a=kGN2
+!s100 2G1IXdB0gR`I6`R4OiR_>0
+R6
+32
+R35
+!i10b 1
+R36
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_1.vhd|
+Z55 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_1.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R20
+R1
+R2
+DEx4 work 5 lut_1 0 22 9dHXbgGWVP@dbKJ1a=kGN2
+!i122 9
+l51
+Z56 L13 51
+VjQM05f;JGNohmgebPX;Df0
+!s100 GR?^T_6]g4HRUzJe_kH;52
+R6
+32
+R35
+!i10b 1
+R36
+R54
+R55
+!i113 1
+R11
+R12
+Elut_2
+R51
+R20
+R1
+R2
+!i122 10
+R3
+Z57 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_2.vhd
+Z58 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_2.vhd
+l0
+L6 1
+VJE2J<SdeVk<Gm[36HIGKX2
+!s100 j@RO;<6YEhP4V^XAbX1IU0
+R6
+32
+R35
+!i10b 1
+R36
+Z59 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_2.vhd|
+Z60 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_2.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R20
+R1
+R2
+DEx4 work 5 lut_2 0 22 JE2J<SdeVk<Gm[36HIGKX2
+!i122 10
+l51
+R56
+V;W]]BFJ_@:N?dFmmGV?gn3
+!s100 =53H3>6=P?h@jbNm2eg3X3
+R6
+32
+R35
+!i10b 1
+R36
+R59
+R60
+!i113 1
+R11
+R12
+Elut_3
+Z61 w1766557857
+R20
+R1
+R2
+!i122 11
+R3
+Z62 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_3.vhd
+Z63 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_3.vhd
+l0
+L5 1
+V<l]zH`6m;K8FnAUL]>9Yl1
+!s100 W]3HS3nm37g1fT]c4BNN82
+R6
+32
+R35
+!i10b 1
+R36
+Z64 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_3.vhd|
+Z65 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_3.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R20
+R1
+R2
+DEx4 work 5 lut_3 0 22 <l]zH`6m;K8FnAUL]>9Yl1
+!i122 11
+l47
+L12 46
+VV6l4FGfi;SJo1c;Y=JOFc3
+!s100 zPNk=n;WK^?8P5J9Ek9MD2
+R6
+32
+R35
+!i10b 1
+R36
+R64
+R65
+!i113 1
+R11
+R12
+Elut_4
+Z66 w1766557904
+R20
+R1
+R2
+!i122 12
+R3
+Z67 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_4.vhd
+Z68 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_4.vhd
+l0
+L5 1
+V:`>P8G_XIZN[EfiKLSVJ13
+!s100 <iIW`U8hBG@^l?DU5;fdl1
+R6
+32
+R35
+!i10b 1
+R36
+Z69 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_4.vhd|
+Z70 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_4.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R20
+R1
+R2
+DEx4 work 5 lut_4 0 22 :`>P8G_XIZN[EfiKLSVJ13
+!i122 12
+l50
+L12 50
+VCdeeN_^?nK1cWTc2>n8B<0
+!s100 JNZA9VG^g;[N;dHORaB=10
+R6
+32
+R35
+!i10b 1
+R36
+R69
+R70
+!i113 1
+R11
+R12
+Elut_prev
+R32
+R1
+R2
+!i122 13
+R3
+Z71 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_Prev.vhd
+Z72 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_Prev.vhd
+l0
+L4 1
+VQJSlXhU98hZXE5R]1ZIAP3
+!s100 K`^?kNL[NUX@]`nd4JF_10
+R6
+32
+R35
+!i10b 1
+R36
+Z73 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_Prev.vhd|
+Z74 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/LUT_Prev.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R1
+R2
+DEx4 work 8 lut_prev 0 22 QJSlXhU98hZXE5R]1ZIAP3
+!i122 13
+l20
+L11 38
+V[XO[VfC;hUIWR4[e]gDD`1
+!s100 DdBKKikM^MKTUc_gU@R1R2
+R6
+32
+R35
+!i10b 1
+R36
+R73
+R74
+!i113 1
+R11
+R12
+Emux2to1_32bit
+R0
+R20
+R1
+R2
+!i122 15
+R3
+Z75 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_32bit.vhd
+Z76 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_32bit.vhd
+l0
+R23
+V8^D=b9:Wa<]@446F`=YF20
+!s100 oc6cnVS[H0QOB9UUiz3A53
+R6
+32
+R24
+!i10b 1
+R25
+Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_32bit.vhd|
+Z78 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_32bit.vhd|
+!i113 1
+R11
+R12
+Artl
+R20
+R1
+R2
+DEx4 work 13 mux2to1_32bit 0 22 8^D=b9:Wa<]@446F`=YF20
+!i122 15
+l33
+Z79 L32 14
+V2Oc5eDHR;bJLI81Q]DbkH0
+!s100 NVS9G7S@VeQ?db;A4AYH?0
+R6
+32
+R24
+!i10b 1
+R25
+R77
+R78
+!i113 1
+R11
+R12
+Emux2to1_8bit
+R0
+R20
+R1
+R2
+!i122 14
+R3
+Z80 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_8bit.vhd
+Z81 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_8bit.vhd
+l0
+R23
+VE_oOc@7zfLzcmJ_3mTM`F1
+!s100 Xo0ZKUl0DAP6d_6I0PJKO3
+R6
+32
+R35
+!i10b 1
+R36
+Z82 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_8bit.vhd|
+Z83 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/mux2to1_8bit.vhd|
+!i113 1
+R11
+R12
+Artl
+R20
+R1
+R2
+DEx4 work 12 mux2to1_8bit 0 22 E_oOc@7zfLzcmJ_3mTM`F1
+!i122 14
+l33
+R79
+Vf:8mUVMC7fJlKNIXbUm]]3
+!s100 `C8`NZ7[GDF5HLfNXNmb_1
+R6
+32
+R35
+!i10b 1
+R36
+R82
+R83
+!i113 1
+R11
+R12
+Eregister32bitpipo
+Z84 w1765252016
+R20
+R1
+R2
+!i122 16
+R3
+Z85 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitPIPO.vhd
+Z86 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitPIPO.vhd
+l0
+L23 1
+VU`30J`Yn54loOEHGGM8?f0
+!s100 Xkm4YTLi_aOV6PJemkC;=1
+R6
+32
+R24
+!i10b 1
+R25
+Z87 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitPIPO.vhd|
+Z88 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitPIPO.vhd|
+!i113 1
+R11
+R12
+Artl
+R20
+R1
+R2
+DEx4 work 17 register32bitpipo 0 22 U`30J`Yn54loOEHGGM8?f0
+!i122 16
+l38
+L34 27
+VPQ=S0i6bRSl^V<^:P?>hB3
+!s100 k@bTTOKZf:K3H_CW;5Wl`1
+R6
+32
+R24
+!i10b 1
+R25
+R87
+R88
+!i113 1
+R11
+R12
+Eregister32bitsipo
+R0
+R20
+R1
+R2
+!i122 17
+R3
+Z89 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitSIPO.vhd
+Z90 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitSIPO.vhd
+l0
+L5 1
+VW_0fn?l2FfQXRlIMQIF6W3
+!s100 ;kfQLULh2bFNdM2ZR=Ndd1
+R6
+32
+R24
+!i10b 1
+R25
+Z91 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitSIPO.vhd|
+Z92 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Register32BitSIPO.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R20
+R1
+R2
+DEx4 work 17 register32bitsipo 0 22 W_0fn?l2FfQXRlIMQIF6W3
+!i122 17
+l31
+L19 54
+VWG7kElo6NIKf5]DWnRnIJ1
+!s100 =TCjPjO[MIj^Vdc_TF?zT1
+R6
+32
+R24
+!i10b 1
+R25
+R91
+R92
+!i113 1
+R11
+R12
+Etb_crcreceiver
+R0
+R1
+R2
+!i122 18
+R3
+Z93 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_corrupt.vhd
+Z94 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_corrupt.vhd
+l0
+L4 1
+VPkA9Y_>a7?0RQIE7E1[Uh1
+!s100 ^dD?gaA2:aEzAoHOcbSGU2
+R6
+32
+R24
+!i10b 1
+R25
+Z95 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_corrupt.vhd|
+Z96 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_corrupt.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R1
+R2
+DEx4 work 14 tb_crcreceiver 0 22 PkA9Y_>a7?0RQIE7E1[Uh1
+!i122 18
+l29
+L8 94
+Vf1Mmc=SP_LW[[H9k_D2BZ0
+!s100 lRj63?9?M@7lk0;kL<68O2
+R6
+32
+R24
+!i10b 1
+R25
+R95
+R96
+!i113 1
+R11
+R12
+Etb_crcreceiver_check
+R0
+R20
+R1
+R2
+!i122 19
+R3
+Z97 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_valid.vhd
+Z98 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_valid.vhd
+l0
+L5 1
+V`:27o5;P:LP2g_^iZ8zkd1
+!s100 8TjkDVRPj?B5I=DHi[>7f1
+R6
+32
+R24
+!i10b 1
+R25
+Z99 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_valid.vhd|
+Z100 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TestBench_valid.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R20
+R1
+R2
+DEx4 work 20 tb_crcreceiver_check 0 22 `:27o5;P:LP2g_^iZ8zkd1
+!i122 19
+l29
+L8 101
+Ve?j6:fU@ERHFnV6A<RBZ02
+!s100 BQYbdcFkHR31W^;OaT3>c1
+R6
+32
+R24
+!i10b 1
+R25
+R99
+R100
+!i113 1
+R11
+R12
+Etoplevel_crc
+R0
+R20
+R1
+R2
+!i122 20
+R3
+Z101 8C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TopLevel_CRC.vhd
+Z102 FC:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TopLevel_CRC.vhd
+l0
+L5 1
+V1KzPAO`eT4IAVG0XOWlB50
+!s100 12>NJ[NITD8>`NhXfH;XM3
+R6
+32
+R24
+!i10b 1
+R25
+Z103 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TopLevel_CRC.vhd|
+Z104 !s107 C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/TopLevel_CRC.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R20
+R1
+R2
+DEx4 work 12 toplevel_crc 0 22 1KzPAO`eT4IAVG0XOWlB50
+!i122 20
+l97
+L17 337
+VdI[U<Qo^<1KBdm^DX`TBD3
+!s100 z7]^dKTF1k_<K4FQZhiFE2
+R6
+32
+R24
+!i10b 1
+R25
+R103
+R104
+!i113 1
+R11
+R12
