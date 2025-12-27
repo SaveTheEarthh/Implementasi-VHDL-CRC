@@ -13,7 +13,7 @@ architecture sim of tb_CRCReceiver is
     signal reset       : std_logic := '0';
     signal input_data  : std_logic_vector(7 downto 0) := (others => '0');
     signal data_valid  : std_logic := '0';
-signal crc_out : std_logic_vector (31 downto 0)  :=(others => '0');
+signal crc_out : std_logic_vector (31 downto 0)  (others => '0');
     signal is_corrupt   : std_logic;
 
     -- Clock period
@@ -41,7 +41,7 @@ begin
             is_corrupt    => is_corrupt,
             data_valid => data_valid,
 	    reset => reset,
-		crc_out => crc_out,
+		crc_out => crc_out
             clk        => clk
         );
 
