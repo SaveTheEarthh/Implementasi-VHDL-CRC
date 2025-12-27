@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fsm>
+  <states>
+    <state>
+      <values>currentCount = 000</values>
+      <position x="-180.0" y="-240.0"/>
+      <number>0</number>
+      <name>s_zero</name>
+      <radius>70</radius>
+      <isInitial>true</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>currentCount = 001</values>
+      <position x="60.0" y="-120.0"/>
+      <number>1</number>
+      <name>s_one</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>currentCount = 010</values>
+      <position x="240.0" y="60.0"/>
+      <number>2</number>
+      <name>s_two</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>currentCount = 011</values>
+      <position x="60.0" y="240.0"/>
+      <number>3</number>
+      <name>s_three</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>currentCount = 100</values>
+      <position x="-180.0" y="60.0"/>
+      <number>4</number>
+      <name>s_four</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+  </states>
+  <transitions>
+    <transition>
+      <values></values>
+      <position x="-8.215809" y="-283.5684"/>
+      <fromState reference="../../../states/state"/>
+      <toState reference="../../../states/state[2]"/>
+      <condition>data_valid = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="234.5" y="-114.5"/>
+      <fromState reference="../../../states/state[2]"/>
+      <toState reference="../../../states/state[3]"/>
+      <condition>data_valid = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="238.2984" y="238.2984"/>
+      <fromState reference="../../../states/state[3]"/>
+      <toState reference="../../../states/state[4]"/>
+      <condition>data_valid = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="-120.83725" y="231.11633"/>
+      <fromState reference="../../../states/state[4]"/>
+      <toState reference="../../../states/state[5]"/>
+      <condition>data_valid = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="-122.4" y="-113.200005"/>
+      <fromState reference="../../../states/state[5]"/>
+      <toState reference="../../../states/state[2]"/>
+      <condition>data_valid = 1</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="-38.0" y="-10.0"/>
+      <fromState reference="../../../states/state[5]"/>
+      <toState reference="../../../states/state[5]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="6.0" y="119.0"/>
+      <fromState reference="../../../states/state[4]"/>
+      <toState reference="../../../states/state[4]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="89.0" y="48.0"/>
+      <fromState reference="../../../states/state[3]"/>
+      <toState reference="../../../states/state[3]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="189.0" y="-245.0"/>
+      <fromState reference="../../../states/state[2]"/>
+      <toState reference="../../../states/state[2]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="-143.0" y="-393.0"/>
+      <fromState reference="../../../states/state"/>
+      <toState reference="../../../states/state"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+  </transitions>
+</fsm>
