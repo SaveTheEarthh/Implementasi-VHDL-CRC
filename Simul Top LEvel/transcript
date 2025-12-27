@@ -82,3 +82,7 @@ vsim -gui work.toplevel_crc
 # Loading work.comparator(bhv)
 # Loading work.crcreceiver(rtl)
 add wave -position insertpoint sim:/toplevel_crc/*
+# Project file C:/Users/budime1/Documents/GitHub/Implementasi-VHDL-CRC/Simul Top LEvel/Simul Top Level.mpf is write protected, data cannot be saved.
+# Unable to save project.
+# End time: 00:54:59 on Dec 28,2025, Elapsed time: 1:03:06
+# Errors: 0, Warnings: 1

@@ -8,6 +8,7 @@ use ieee.numeric_std.all;
 entity CRCreceiver is
 	port	(
 				input_data		:in		std_logic_vector (7 downto 0);	-- data A
+                reset : in std_logic;
                 data_valid  :in     std_logic;
 				clk	:		in		std_logic;-- sinyal Clockian
                 is_corrupt		: out  std_logic;
@@ -17,7 +18,7 @@ end CRCreceiver;
 
 -- Define architecture
 architecture rtl of CRCreceiver is
-    signal data_good, is_ready, is_4, en_regis, reset: STD_LOGIC;
+    signal data_good, is_ready, is_4, en_regis: STD_LOGIC;
     signal  out_LUT1, out_LUT2, out_LUT3, out_LUT4, output_LUT, SIPO_out, data_after_regis32bit, data_after_XOR, data_after_LUT_prev: STD_LOGIC_VECTOR(31 downto 0);
     signal byteCount: STD_LOGIC_VECTOR(2 downto 0);
     signal first_byte, second_byte, third_byte, fourth_byte: STD_LOGIC_VECTOR(7 downto 0);
@@ -108,7 +109,7 @@ begin
 SIPO_atas: Register32BitSIPO
  port map(
     clk => clk,
-    reset => '0',
+    reset => reset,
     uart_data => input_data,
     uart_valid => data_valid,
     chunk_data => SIPO_out
@@ -173,7 +174,7 @@ REGIS_PIPO_bawah: register32bitPIPO
  port map(
     A => data_after_XOR,
     En => en_regis,
-    Res => '0',
+    Res => reset,
     Clk => Clk,
     Data => data_after_regis32bit
 );
@@ -199,7 +200,7 @@ comparator_ready: comparator
     );
 
     crc_out <= data_after_regis32bit;
-    
+
 comparator_zero: comparator
     port map(
         inp_A => data_after_regis32bit, -- Clean signal
