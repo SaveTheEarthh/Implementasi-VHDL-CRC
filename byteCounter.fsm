@@ -3,7 +3,7 @@
   <states>
     <state>
       <values>currentCount = 000</values>
-      <position x="-180.0" y="-240.0"/>
+      <position x="120.0" y="-480.0"/>
       <number>0</number>
       <name>s_zero</name>
       <radius>70</radius>
@@ -13,7 +13,7 @@
     </state>
     <state>
       <values>currentCount = 001</values>
-      <position x="60.0" y="-120.0"/>
+      <position x="-120.0" y="-240.0"/>
       <number>1</number>
       <name>s_one</name>
       <radius>70</radius>
@@ -23,7 +23,7 @@
     </state>
     <state>
       <values>currentCount = 010</values>
-      <position x="240.0" y="60.0"/>
+      <position x="60.0" y="0.0"/>
       <number>2</number>
       <name>s_two</name>
       <radius>70</radius>
@@ -33,7 +33,7 @@
     </state>
     <state>
       <values>currentCount = 011</values>
-      <position x="60.0" y="240.0"/>
+      <position x="-120.0" y="180.0"/>
       <number>3</number>
       <name>s_three</name>
       <radius>70</radius>
@@ -43,9 +43,39 @@
     </state>
     <state>
       <values>currentCount = 100</values>
-      <position x="-180.0" y="60.0"/>
+      <position x="-420.0" y="120.0"/>
       <number>4</number>
       <name>s_four</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>pad = 1, currentCount = 001</values>
+      <position x="300.0" y="-300.0"/>
+      <number>5</number>
+      <name>spad_one</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>pad = 1, currentCount = 010</values>
+      <position x="360.0" y="0.0"/>
+      <number>6</number>
+      <name>spad_two</name>
+      <radius>70</radius>
+      <isInitial>false</isInitial>
+      <initialAngle>12</initialAngle>
+      <defaultDC>false</defaultDC>
+    </state>
+    <state>
+      <values>pad = 1, currentCount = 011</values>
+      <position x="0.0" y="360.0"/>
+      <number>7</number>
+      <name>spad_three</name>
       <radius>70</radius>
       <isInitial>false</isInitial>
       <initialAngle>12</initialAngle>
@@ -55,72 +85,86 @@
   <transitions>
     <transition>
       <values></values>
-      <position x="-8.215809" y="-283.5684"/>
+      <position x="8.087369" y="-351.91263"/>
       <fromState reference="../../../states/state"/>
       <toState reference="../../../states/state[2]"/>
       <condition>data_valid = 1</condition>
     </transition>
     <transition>
       <values></values>
-      <position x="234.5" y="-114.5"/>
+      <position x="1.5521183" y="-143.6641"/>
       <fromState reference="../../../states/state[2]"/>
       <toState reference="../../../states/state[3]"/>
       <condition>data_valid = 1</condition>
     </transition>
     <transition>
       <values></values>
-      <position x="238.2984" y="238.2984"/>
+      <position x="48.23259" y="168.23259"/>
       <fromState reference="../../../states/state[3]"/>
       <toState reference="../../../states/state[4]"/>
       <condition>data_valid = 1</condition>
     </transition>
     <transition>
       <values></values>
-      <position x="-120.83725" y="231.11633"/>
+      <position x="-272.8446" y="164.22298"/>
       <fromState reference="../../../states/state[4]"/>
       <toState reference="../../../states/state[5]"/>
       <condition>data_valid = 1</condition>
     </transition>
     <transition>
       <values></values>
-      <position x="-122.4" y="-113.200005"/>
+      <position x="-238.03247" y="-33.36039"/>
       <fromState reference="../../../states/state[5]"/>
       <toState reference="../../../states/state[2]"/>
       <condition>data_valid = 1</condition>
     </transition>
     <transition>
       <values></values>
-      <position x="-38.0" y="-10.0"/>
+      <position x="-700.0" y="85.0"/>
       <fromState reference="../../../states/state[5]"/>
       <toState reference="../../../states/state[5]"/>
       <condition>data_valid = 0</condition>
     </transition>
     <transition>
       <values></values>
-      <position x="6.0" y="119.0"/>
-      <fromState reference="../../../states/state[4]"/>
-      <toState reference="../../../states/state[4]"/>
-      <condition>data_valid = 0</condition>
-    </transition>
-    <transition>
-      <values></values>
-      <position x="89.0" y="48.0"/>
-      <fromState reference="../../../states/state[3]"/>
-      <toState reference="../../../states/state[3]"/>
-      <condition>data_valid = 0</condition>
-    </transition>
-    <transition>
-      <values></values>
-      <position x="189.0" y="-245.0"/>
-      <fromState reference="../../../states/state[2]"/>
-      <toState reference="../../../states/state[2]"/>
-      <condition>data_valid = 0</condition>
-    </transition>
-    <transition>
-      <values></values>
-      <position x="-143.0" y="-393.0"/>
+      <position x="252.2479" y="-432.2479"/>
       <fromState reference="../../../states/state"/>
-      <toState reference="../../../states/state"/>
+      <toState reference="../../../states/state[6]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="437.1154" y="-171.42308"/>
+      <fromState reference="../../../states/state[6]"/>
+      <toState reference="../../../states/state[7]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="371.37366" y="371.37366"/>
+      <fromState reference="../../../states/state[7]"/>
+      <toState reference="../../../states/state[8]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="-230.90157" y="276.57773"/>
+      <fromState reference="../../../states/state[8]"/>
+      <toState reference="../../../states/state[5]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="170.70668" y="-221.41336"/>
+      <fromState reference="../../../states/state[2]"/>
+      <toState reference="../../../states/state[7]"/>
+      <condition>data_valid = 0</condition>
+    </transition>
+    <transition>
+      <values></values>
+      <position x="269.96954" y="219.99492"/>
+      <fromState reference="../../../states/state[3]"/>
+      <toState reference="../../../states/state[8]"/>
       <condition>data_valid = 0</condition>
     </transition>
   </transitions>

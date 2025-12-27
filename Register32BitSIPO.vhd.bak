@@ -12,7 +12,7 @@ entity Register32BitSIPO is
         uart_valid  : in  STD_LOGIC;                     -- Sinyal valid dari UART
         
         -- Interface ke CRC Engine (Output)
-        chunk_data  : out STD_LOGIC_VECTOR (31 downto 0) -- Data 32-bit keluar                    -
+        chunk_data  : out STD_LOGIC_VECTOR (31 downto 0) -- Data 32-bit keluar                    -- Sinyal 'Is_4' (Penuh)
     );
 end Register32BitSIPO;
 
