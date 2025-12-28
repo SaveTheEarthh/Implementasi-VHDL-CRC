@@ -1,17 +1,15 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
 
 entity TopLevel_CRC is
     Port ( 
         clk         : in  std_logic; 
-        reset       : in  std_logic; -- Physical Pin 25 (Active Low)
-        btn_tick    : in  std_logic; -- Physical Pin 88 (Active Low)
+        reset       : in  std_logic; 
+        btn_tick    : in  std_logic; 
         uart_rx     : in  std_logic;
         uart_tx     : out std_logic;
--- [UBAH] Ganti nama port LCD lama menjadi port status untuk ESP32
-        esp_mode_out   : out std_logic; -- Ke ESP32 (Memberitahu TX atau RX)
-        esp_corrupt_out: out std_logic; -- Ke ESP32 (Memberitahu Valid atau Corrupt)
+        
+        -- Debug Output (Still useful for waveform checking)
         data_crc    : out std_logic_vector(31 downto 0);
         is_corrupt  : out std_logic
     );
@@ -26,12 +24,7 @@ architecture Behavioral of TopLevel_CRC is
     signal uart_valid    : std_logic;
     signal valid_for_tx, valid_for_rx : std_logic;
     signal tx_out_signal, rx_out_signal : std_logic_vector(31 downto 0);
-    
-    -- [FIX] New signals to hold the Inverted Button values
-    signal reset_active     : std_logic;
-    signal btn_tick_active  : std_logic;
-    signal btn_tick_prev    : std_logic := '0';
-    
+    signal btn_tick_prev : std_logic := '0';
     signal internal_reset : std_logic;
     signal compute_final : std_logic;
     signal valid_to_crc  : std_logic;
@@ -42,11 +35,8 @@ architecture Behavioral of TopLevel_CRC is
     signal uart_is_busy : std_logic;
     signal is_rx_mode   : std_logic;
     signal result_to_show: std_logic_vector(31 downto 0);
-    signal is_corrupt_node : std_logic;
 
-    signal lcd_mode_rx : std_logic;
-    signal latched_corrupt : std_logic := '0';
-
+    -- Components
     component uart
         port (
             i_CLOCK : in std_logic;
@@ -80,50 +70,40 @@ architecture Behavioral of TopLevel_CRC is
     end component;
 
 begin
-    -- [CRITICAL FIX] Invert the buttons!
-    -- The board buttons are 1 when IDLE, 0 when PRESSED.
-    -- We convert them so 1 means ACTIVE inside our logic.
-    reset_active    <= NOT reset;
-    btn_tick_active <= NOT btn_tick;
+    internal_reset <= reset OR btn_tick;
 
-    -- Reset the internal logic if Global Reset is pressed OR Mode Button is pressed
-    internal_reset <= reset_active OR btn_tick_active;
-
+    -- UART INSTANTIATION
     UART_INST : uart
     port map (
         i_CLOCK => clk,
         i_RX    => uart_rx,
         o_DATA  => uart_data_out,   
         o_VALID => uart_valid,      
+        
+        -- [CONNECTED] TX inputs come from Serializer
         i_DATA  => ser_tx_data,   
         i_SEND  => ser_tx_start,  
         o_TX    => uart_tx,
         o_TX_BUSY => uart_is_busy
     );
 
+    -- Filter 'Enter' Key
     valid_to_crc  <= uart_valid when (uart_data_out /= x"0D") else '0';
     compute_final <= uart_valid when (uart_data_out = x"0D") else '0';
 
-    -- State Machine for Mode Switching
-    process(clk, reset_active)
+    -- State Machine
+    process(clk, reset)
     begin
-        if reset_active = '1' then
+        if reset = '1' then
             current_state <= CRC_Transmitter;
             btn_tick_prev <= '0';
         elsif rising_edge(clk) then
-            -- Use the Inverted (Active High) button signal
-            btn_tick_prev <= btn_tick_active;
-            
+            btn_tick_prev <= btn_tick;
             case current_state is
                 when CRC_Transmitter =>
-                    -- Detect Rising Edge (Button Press)
-                    if (btn_tick_active = '1' and btn_tick_prev = '0') then 
-                        current_state <= CRC_Receiver; 
-                    end if;
+                    if (btn_tick = '1' and btn_tick_prev = '0') then current_state <= CRC_Receiver; end if;
                 when CRC_Receiver =>
-                    if (btn_tick_active = '1' and btn_tick_prev = '0') then 
-                        current_state <= CRC_Transmitter; 
-                    end if;
+                    if (btn_tick = '1' and btn_tick_prev = '0') then current_state <= CRC_Transmitter; end if;
             end case;
         end if;
     end process;
@@ -135,34 +115,25 @@ begin
     port map( reset => internal_reset, clk => clk, input_data => uart_data_out, crc_out => tx_out_signal, data_valid => valid_for_tx, compute_final => compute_final );
 
     RX_INST : CRCreceiver
-    port map( reset => internal_reset, clk => clk, input_data => uart_data_out, is_corrupt => is_corrupt_node, data_valid => valid_for_rx, rx_debug_data => rx_out_signal, compute_final => compute_final );
+    port map( reset => internal_reset, clk => clk, input_data => uart_data_out, is_corrupt => is_corrupt, data_valid => valid_for_rx, rx_debug_data => rx_out_signal, compute_final => compute_final );
 
+    -- Mux Output Data
     data_crc <= tx_out_signal when current_state = CRC_Transmitter else rx_out_signal;
     result_to_show <= tx_out_signal when current_state = CRC_Transmitter else rx_out_signal;
     is_rx_mode <= '1' when current_state = CRC_Receiver else '0';
-    
-    is_corrupt <= is_corrupt_node;
 
-    latched_corrupt <= '1' when (current_state = CRC_Receiver and is_corrupt_node /= '0') else '0';
-
+    -- SERIALIZER INSTANCE
     SERIALIZER_INST : Result_Serializer
     port map(
         clk => clk,
-        reset => reset_active, -- Use Inverted Reset
-        start_send => compute_final,
+        reset => reset,
+        start_send => compute_final, -- Trigger on Enter
         mode_rx => is_rx_mode,
         data_in => result_to_show,
-        is_corrupt => is_corrupt_node,
+        is_corrupt => is_corrupt,
         uart_busy => uart_is_busy,
         uart_start => ser_tx_start,
         uart_data => ser_tx_data
     );
-
-    -- [BAGIAN BARU] OUTPUT KE ESP32
-    -- Pin 98 akan bernilai '1' jika RX Mode, '0' jika TX Mode
-    esp_mode_out <= '1' when current_state = CRC_Receiver else '0';
-    
-    -- Pin 99 akan bernilai '1' jika CRC Corrupt/Invalid, '0' jika Valid
-    esp_corrupt_out <= latched_corrupt;
 
 end Behavioral;

@@ -15,7 +15,7 @@ Z1 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 749
+!i122 1169
 Z5 dD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC
 Z6 8comparator.vhd
 Z7 Fcomparator.vhd
@@ -25,9 +25,9 @@ VmeL7PAnnio<;3czlm30hA3
 !s100 [;>GJkVU<AX]WIU;R?XYZ1
 Z8 OV;C;2020.1;71
 33
-Z9 !s110 1766868337
+Z9 !s110 1766921716
 !i10b 1
-Z10 !s108 1766868337.000000
+Z10 !s108 1766921716.000000
 Z11 !s90 -reportprogress|300|-2008|comparator.vhd|
 Z12 !s107 comparator.vhd|
 !i113 1
@@ -39,7 +39,7 @@ R2
 R3
 R4
 DEx4 work 10 comparator 0 22 meL7PAnnio<;3czlm30hA3
-!i122 749
+!i122 1169
 l14
 L13 5
 Vo;53^WXf;:BZC;;X6G0=N1
@@ -55,25 +55,25 @@ R12
 R13
 R14
 Ecounter4bit
-Z15 w1766862577
+Z15 w1766911801
 Z16 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 R3
 R4
-!i122 748
+!i122 1175
 R5
-Z17 8UpCounter.vhd
-Z18 FUpCounter.vhd
+Z17 8counter4bit.vhd
+Z18 Fcounter4bit.vhd
 l0
 Z19 L22 1
 VQ9zgafN<U0=6omz>Uf?H00
 !s100 C56g]hfYM@dWNJj3G85?12
 R8
 33
-R9
+Z20 !s110 1766921717
 !i10b 1
-R10
-Z20 !s90 -reportprogress|300|-2008|UpCounter.vhd|
-Z21 !s107 UpCounter.vhd|
+Z21 !s108 1766921717.000000
+Z22 !s90 -reportprogress|300|-2008|counter4bit.vhd|
+Z23 !s107 counter4bit.vhd|
 !i113 1
 R13
 R14
@@ -82,18 +82,18 @@ R16
 R3
 R4
 DEx4 work 11 counter4bit 0 22 Q9zgafN<U0=6omz>Uf?H00
-!i122 748
+!i122 1175
 l36
 L32 25
 V_La7;D5>B1MB11XTEBTU?1
 !s100 nj0c7EaLkMNzH4KOCHH1@0
 R8
 33
-R9
-!i10b 1
-R10
 R20
+!i10b 1
 R21
+R22
+R23
 !i113 1
 R13
 R14
@@ -101,11 +101,11 @@ Pcrc32_pkg
 R16
 R3
 R4
-!i122 685
+!i122 762
 R0
 R5
-Z22 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd
-Z23 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd
+Z24 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd
+Z25 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd
 l0
 L5 1
 V<TOdZYH[[Bm>;kD7NFJFI3
@@ -113,52 +113,52 @@ V<TOdZYH[[Bm>;kD7NFJFI3
 R8
 32
 b1
-Z24 !s110 1766867976
+Z26 !s110 1766910988
 !i10b 1
-Z25 !s108 1766867976.000000
-Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd|
-Z27 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd|
+Z27 !s108 1766910988.000000
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd|
+Z29 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/CRC32_Pkg.vhd|
 !i113 1
-Z28 o-work work -2002 -explicit
+Z30 o-work work -2002 -explicit
 R14
 Bbody
 DPx4 work 9 crc32_pkg 0 22 <TOdZYH[[Bm>;kD7NFJFI3
 R16
 R3
 R4
-!i122 685
+!i122 762
 l0
 L13 1
 VB]6TTo>nzKNOOZG]?cMdE1
 !s100 ?FG:L=?<giXd8FDE2z[ZW2
 R8
 32
-R24
-!i10b 1
-R25
 R26
+!i10b 1
 R27
-!i113 1
 R28
+R29
+!i113 1
+R30
 R14
 Ecrcreceiver
-Z29 w1766867972
+Z31 w1766867972
 R16
 R3
 R4
-!i122 757
+!i122 1178
 R5
-Z30 8CRCreceiver.vhd
-Z31 FCRCreceiver.vhd
+Z32 8CRCreceiver.vhd
+Z33 FCRCreceiver.vhd
 l0
 L5 1
 VKHDBQQ^7CFzHliKoANAAS3
 !s100 oRIEe]f>0gJK[l7gcI^a]2
 R8
 33
-Z32 !s110 1766868338
+R20
 !i10b 1
-Z33 !s108 1766868338.000000
+R21
 Z34 !s90 -reportprogress|300|-2008|CRCreceiver.vhd|
 Z35 !s107 CRCreceiver.vhd|
 !i113 1
@@ -169,16 +169,16 @@ R16
 R3
 R4
 DEx4 work 11 crcreceiver 0 22 KHDBQQ^7CFzHliKoANAAS3
-!i122 757
+!i122 1178
 l58
 L17 129
 VKB86V`1I6bFbM6R7k_G4b1
 !s100 n3Y@S7ZA968?B;o`YMWcm2
 R8
 33
-R32
+R20
 !i10b 1
-R33
+R21
 R34
 R35
 !i113 1
@@ -189,7 +189,7 @@ Z36 w1766867960
 R16
 R3
 R4
-!i122 756
+!i122 1177
 R5
 Z37 8CRCtransmitter.vhd
 Z38 FCRCtransmitter.vhd
@@ -199,9 +199,9 @@ VYTQ2;ijT5XHF`G_NmK?@a2
 !s100 z338A>_G@;fl7d=;f5H[g2
 R8
 33
-R32
+R20
 !i10b 1
-R33
+R21
 Z39 !s90 -reportprogress|300|-2008|CRCtransmitter.vhd|
 Z40 !s107 CRCtransmitter.vhd|
 !i113 1
@@ -212,16 +212,16 @@ R16
 R3
 R4
 DEx4 work 14 crctransmitter 0 22 YTQ2;ijT5XHF`G_NmK?@a2
-!i122 756
+!i122 1177
 l60
-L16 137
+Z41 L16 137
 VG0:6VEFOOV=?oNDEUl3NW2
 !s100 l[2S:;=1SmoLJ6g^LFJ7F0
 R8
 33
-R32
+R20
 !i10b 1
-R33
+R21
 R39
 R40
 !i113 1
@@ -231,62 +231,62 @@ Edemux_1to2
 R0
 R3
 R4
-!i122 689
+!i122 766
 R5
-Z41 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd
-Z42 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd
+Z42 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd
+Z43 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd
 l0
 L4 1
 V<dB8hJzZgFl4onoIlV<oC0
 !s100 OLgneEk8N2P6S1dWo0TC31
 R8
 32
-Z43 !s110 1766867977
+Z44 !s110 1766910989
 !i10b 1
-R25
-Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd|
-Z45 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd|
+Z45 !s108 1766910989.000000
+Z46 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd|
+Z47 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/Demux1To2.vhd|
 !i113 1
-R28
+R30
 R14
 Abhv
 R3
 R4
 DEx4 work 10 demux_1to2 0 22 <dB8hJzZgFl4onoIlV<oC0
-!i122 689
+!i122 766
 l14
 L13 12
 Vd47YQB60HQb<1U?YmA7l11
 !s100 >PRL<jlZZozI]nQ7[Wczf2
 R8
 32
-R43
-!i10b 1
-R25
 R44
+!i10b 1
 R45
+R46
+R47
 !i113 1
-R28
+R30
 R14
 Efsm_pengontrol
-R15
+Z48 w1766862577
 R3
 R4
-!i122 755
+!i122 1176
 R5
-Z46 8FSM_Pengontrol.vhd
-Z47 FFSM_Pengontrol.vhd
+Z49 8FSM_Pengontrol.vhd
+Z50 FFSM_Pengontrol.vhd
 l0
 L4 1
 V9Dk7jWAgd03`P2RJ36EAn2
 !s100 k9UTfC@Fznj=iVm3OW<CI1
 R8
 33
-R32
+R20
 !i10b 1
-R33
-Z48 !s90 -reportprogress|300|-2008|FSM_Pengontrol.vhd|
-Z49 !s107 FSM_Pengontrol.vhd|
+R21
+Z51 !s90 -reportprogress|300|-2008|FSM_Pengontrol.vhd|
+Z52 !s107 FSM_Pengontrol.vhd|
 !i113 1
 R13
 R14
@@ -294,18 +294,18 @@ Abehavioral
 R3
 R4
 DEx4 work 14 fsm_pengontrol 0 22 9Dk7jWAgd03`P2RJ36EAn2
-!i122 755
+!i122 1176
 l21
 L18 56
 VINCA7X2jFJin]WUfoBVSA2
 !s100 l@Z2?V4bagjJ_59@Rcik82
 R8
 33
-R32
+R20
 !i10b 1
-R33
-R48
-R49
+R21
+R51
+R52
 !i113 1
 R13
 R14
@@ -314,21 +314,21 @@ R0
 R16
 R3
 R4
-!i122 750
+!i122 1170
 R5
-Z50 8LUT_1.vhd
-Z51 FLUT_1.vhd
+Z53 8LUT_1.vhd
+Z54 FLUT_1.vhd
 l0
 L6 1
 VAFVaPK>YnnkdTz[DkjMVC1
 !s100 2G1IXdB0gR`I6`R4OiR_>0
 R8
 33
-R32
+R9
 !i10b 1
 R10
-Z52 !s90 -reportprogress|300|-2008|LUT_1.vhd|
-Z53 !s107 LUT_1.vhd|
+Z55 !s90 -reportprogress|300|-2008|LUT_1.vhd|
+Z56 !s107 LUT_1.vhd|
 !i113 1
 R13
 R14
@@ -337,18 +337,18 @@ R16
 R3
 R4
 DEx4 work 5 lut_1 0 22 AFVaPK>YnnkdTz[DkjMVC1
-!i122 750
+!i122 1170
 l51
-Z54 L13 51
+Z57 L13 51
 VkVCNVk_aZFgEo7zaeP^M33
 !s100 GR?^T_6]g4HRUzJe_kH;52
 R8
 33
-R32
+R9
 !i10b 1
 R10
-R52
-R53
+R55
+R56
 !i113 1
 R13
 R14
@@ -357,21 +357,21 @@ R0
 R16
 R3
 R4
-!i122 751
+!i122 1171
 R5
-Z55 8LUT_2.vhd
-Z56 FLUT_2.vhd
+Z58 8LUT_2.vhd
+Z59 FLUT_2.vhd
 l0
 L6 1
 VWoJ4@1GA]54h@?D@]VN;63
 !s100 j@RO;<6YEhP4V^XAbX1IU0
 R8
 33
-R32
+R9
 !i10b 1
-R33
-Z57 !s90 -reportprogress|300|-2008|LUT_2.vhd|
-Z58 !s107 LUT_2.vhd|
+R10
+Z60 !s90 -reportprogress|300|-2008|LUT_2.vhd|
+Z61 !s107 LUT_2.vhd|
 !i113 1
 R13
 R14
@@ -380,18 +380,18 @@ R16
 R3
 R4
 DEx4 work 5 lut_2 0 22 WoJ4@1GA]54h@?D@]VN;63
-!i122 751
+!i122 1171
 l51
-R54
+R57
 V^7V:RhKBXDPCb:on4>@Nk0
 !s100 =53H3>6=P?h@jbNm2eg3X3
 R8
 33
-R32
+R9
 !i10b 1
-R33
-R57
-R58
+R10
+R60
+R61
 !i113 1
 R13
 R14
@@ -400,21 +400,21 @@ R0
 R16
 R3
 R4
-!i122 752
+!i122 1172
 R5
-Z59 8LUT_3.vhd
-Z60 FLUT_3.vhd
+Z62 8LUT_3.vhd
+Z63 FLUT_3.vhd
 l0
 L5 1
 VFZcAmgaKV@fFY3FCU1z1L3
 !s100 W]3HS3nm37g1fT]c4BNN82
 R8
 33
-R32
+R9
 !i10b 1
-R33
-Z61 !s90 -reportprogress|300|-2008|LUT_3.vhd|
-Z62 !s107 LUT_3.vhd|
+R10
+Z64 !s90 -reportprogress|300|-2008|LUT_3.vhd|
+Z65 !s107 LUT_3.vhd|
 !i113 1
 R13
 R14
@@ -423,18 +423,18 @@ R16
 R3
 R4
 DEx4 work 5 lut_3 0 22 FZcAmgaKV@fFY3FCU1z1L3
-!i122 752
+!i122 1172
 l47
 L12 46
 VJk_=S@:6YKgT>jnIf@HYo2
 !s100 zPNk=n;WK^?8P5J9Ek9MD2
 R8
 33
-R32
+R9
 !i10b 1
-R33
-R61
-R62
+R10
+R64
+R65
 !i113 1
 R13
 R14
@@ -443,21 +443,21 @@ R0
 R16
 R3
 R4
-!i122 753
+!i122 1173
 R5
-Z63 8LUT_4.vhd
-Z64 FLUT_4.vhd
+Z66 8LUT_4.vhd
+Z67 FLUT_4.vhd
 l0
 L5 1
 V[fc11db]K]S6h4ehB[@WO2
 !s100 <iIW`U8hBG@^l?DU5;fdl1
 R8
 33
-R32
+R9
 !i10b 1
-R33
-Z65 !s90 -reportprogress|300|-2008|LUT_4.vhd|
-Z66 !s107 LUT_4.vhd|
+R10
+Z68 !s90 -reportprogress|300|-2008|LUT_4.vhd|
+Z69 !s107 LUT_4.vhd|
 !i113 1
 R13
 R14
@@ -466,41 +466,41 @@ R16
 R3
 R4
 DEx4 work 5 lut_4 0 22 [fc11db]K]S6h4ehB[@WO2
-!i122 753
+!i122 1173
 l50
 L12 50
 VhLX?T`ZZHJgz8miaQA8h71
 !s100 JNZA9VG^g;[N;dHORaB=10
 R8
 33
-R32
+R9
 !i10b 1
-R33
-R65
-R66
+R10
+R68
+R69
 !i113 1
 R13
 R14
 Elut_prev
-Z67 w1766865918
+Z70 w1766865918
 R16
 R3
 R4
-!i122 754
+!i122 1174
 R5
-Z68 8LUT_Prev.vhd
-Z69 FLUT_Prev.vhd
+Z71 8LUT_Prev.vhd
+Z72 FLUT_Prev.vhd
 l0
 L5 1
 VP><l9P7]cIf5J>LKJUHh13
 !s100 cniCMd;Ik?U;W]IMcElH22
 R8
 33
-R32
+R20
 !i10b 1
-R33
-Z70 !s90 -reportprogress|300|-2008|LUT_Prev.vhd|
-Z71 !s107 LUT_Prev.vhd|
+R10
+Z73 !s90 -reportprogress|300|-2008|LUT_Prev.vhd|
+Z74 !s107 LUT_Prev.vhd|
 !i113 1
 R13
 R14
@@ -509,41 +509,41 @@ R16
 R3
 R4
 DEx4 work 8 lut_prev 0 22 P><l9P7]cIf5J>LKJUHh13
-!i122 754
+!i122 1174
 l48
 L12 56
 VG@YE41;hoGhR4fH=k]n]c2
 !s100 zlY<lG^C@PV^:nl=8Nk@e2
 R8
 33
-R32
+R20
 !i10b 1
-R33
-R70
-R71
+R10
+R73
+R74
 !i113 1
 R13
 R14
 Emux2to1_32bit
-R15
+R48
 R16
 R3
 R4
-!i122 744
+!i122 1164
 R5
-Z72 8mux2to1_32bit.vhd
-Z73 Fmux2to1_32bit.vhd
+Z75 8mux2to1_32bit.vhd
+Z76 Fmux2to1_32bit.vhd
 l0
 R19
 VV:ei@>Xb6o?B0no=T5;WS3
 !s100 oc6cnVS[H0QOB9UUiz3A53
 R8
 33
-R9
+Z77 !s110 1766921715
 !i10b 1
-R10
-Z74 !s90 -reportprogress|300|-2008|mux2to1_32bit.vhd|
-Z75 !s107 mux2to1_32bit.vhd|
+Z78 !s108 1766921715.000000
+Z79 !s90 -reportprogress|300|-2008|mux2to1_32bit.vhd|
+Z80 !s107 mux2to1_32bit.vhd|
 !i113 1
 R13
 R14
@@ -552,41 +552,41 @@ R16
 R3
 R4
 DEx4 work 13 mux2to1_32bit 0 22 V:ei@>Xb6o?B0no=T5;WS3
-!i122 744
+!i122 1164
 l33
-Z76 L32 14
+Z81 L32 14
 VHzgclYE24dPL?70U9RK3M3
 !s100 HQE2N^L7Q6]E1jR3[a6OW2
 R8
 33
-R9
+R77
 !i10b 1
-R10
-R74
-R75
+R78
+R79
+R80
 !i113 1
 R13
 R14
 Emux2to1_8bit
-R15
+R48
 R16
 R3
 R4
-!i122 745
+!i122 1165
 R5
-Z77 8mux2to1_8bit.vhd
-Z78 Fmux2to1_8bit.vhd
+Z82 8mux2to1_8bit.vhd
+Z83 Fmux2to1_8bit.vhd
 l0
 R19
 VZ@R5_>NUi[fkM5o0V@:h_1
 !s100 Xo0ZKUl0DAP6d_6I0PJKO3
 R8
 33
-R9
+R77
 !i10b 1
-R10
-Z79 !s90 -reportprogress|300|-2008|mux2to1_8bit.vhd|
-Z80 !s107 mux2to1_8bit.vhd|
+R78
+Z84 !s90 -reportprogress|300|-2008|mux2to1_8bit.vhd|
+Z85 !s107 mux2to1_8bit.vhd|
 !i113 1
 R13
 R14
@@ -595,41 +595,41 @@ R16
 R3
 R4
 DEx4 work 12 mux2to1_8bit 0 22 Z@R5_>NUi[fkM5o0V@:h_1
-!i122 745
+!i122 1165
 l33
-R76
+R81
 VfEf>gGcUg^VUFPBR3AT4N1
 !s100 bfTNYM:WgGT<`nzHoDF9J1
 R8
 33
-R9
+R77
 !i10b 1
-R10
-R79
-R80
+R78
+R84
+R85
 !i113 1
 R13
 R14
 Eregister32bitpipo
-Z81 w1766673469
+Z86 w1766673469
 R16
 R3
 R4
-!i122 746
+!i122 1166
 R5
-Z82 8register32bitPIPO.vhd
-Z83 Fregister32bitPIPO.vhd
+Z87 8register32bitPIPO.vhd
+Z88 Fregister32bitPIPO.vhd
 l0
 L23 1
 VFjdATYO:[R2KcI?LeQbjA0
 !s100 Xkm4YTLi_aOV6PJemkC;=1
 R8
 33
-R9
+R77
 !i10b 1
-R10
-Z84 !s90 -reportprogress|300|-2008|register32bitPIPO.vhd|
-Z85 !s107 register32bitPIPO.vhd|
+R78
+Z89 !s90 -reportprogress|300|-2008|register32bitPIPO.vhd|
+Z90 !s107 register32bitPIPO.vhd|
 !i113 1
 R13
 R14
@@ -638,18 +638,18 @@ R16
 R3
 R4
 DEx4 work 17 register32bitpipo 0 22 FjdATYO:[R2KcI?LeQbjA0
-!i122 746
+!i122 1166
 l38
 L34 27
 V__9Wc5dMZ;6DM9E5>bK3o1
 !s100 k@bTTOKZf:K3H_CW;5Wl`1
 R8
 33
-R9
+R77
 !i10b 1
-R10
-R84
-R85
+R78
+R89
+R90
 !i113 1
 R13
 R14
@@ -658,10 +658,10 @@ R0
 R16
 R3
 R4
-!i122 747
+!i122 1167
 R5
-Z86 8Register32BitSIPO.vhd
-Z87 FRegister32BitSIPO.vhd
+Z91 8Register32BitSIPO.vhd
+Z92 FRegister32BitSIPO.vhd
 l0
 L5 1
 V[jCzNMkcUkcA@`W>`XNc40
@@ -670,9 +670,9 @@ R8
 33
 R9
 !i10b 1
-R10
-Z88 !s90 -reportprogress|300|-2008|Register32BitSIPO.vhd|
-Z89 !s107 Register32BitSIPO.vhd|
+R78
+Z93 !s90 -reportprogress|300|-2008|Register32BitSIPO.vhd|
+Z94 !s107 Register32BitSIPO.vhd|
 !i113 1
 R13
 R14
@@ -681,7 +681,7 @@ R16
 R3
 R4
 DEx4 work 17 register32bitsipo 0 22 [jCzNMkcUkcA@`W>`XNc40
-!i122 747
+!i122 1167
 l31
 L19 54
 V1_XdaLGWTmB7_3`XIIkA[2
@@ -690,182 +690,268 @@ R8
 33
 R9
 !i10b 1
-R10
-R88
-R89
+R78
+R93
+R94
+!i113 1
+R13
+R14
+Eresult_serializer
+Z95 w1766911114
+R16
+R3
+R4
+!i122 1179
+R5
+Z96 8Result_Serializer.vhd
+Z97 FResult_Serializer.vhd
+l0
+L5 1
+V>N[PO:LSU=[H1Rg[jS[d>3
+!s100 6on=iDmHKoGTOkO[Q1YSi1
+R8
+33
+R20
+!i10b 1
+R21
+Z98 !s90 -reportprogress|300|-2008|Result_Serializer.vhd|
+Z99 !s107 Result_Serializer.vhd|
+!i113 1
+R13
+R14
+Abehavioral
+R16
+R3
+R4
+DEx4 work 17 result_serializer 0 22 >N[PO:LSU=[H1Rg[jS[d>3
+!i122 1179
+l47
+L21 141
+VZnUZc=foFk<`lOdNE?8_X2
+!s100 gfa24;d>hmYL6P9MPCAlV1
+R8
+33
+R20
+!i10b 1
+R21
+R98
+R99
 !i113 1
 R13
 R14
 Etb_corruption_test
-R15
+R48
 R16
 R3
 R4
-!i122 700
+!i122 777
 R5
-Z90 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd
-Z91 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd
+Z100 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd
+Z101 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd
 l0
 L5 1
 VQ4j[2Bo<nl9a3WCg[;0Kg2
 !s100 8n6SbJkk?WVAi2BmeVZ=P2
 R8
 32
-Z92 !s110 1766867978
+Z102 !s110 1766910990
 !i10b 1
-Z93 !s108 1766867978.000000
-Z94 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd|
-Z95 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd|
+Z103 !s108 1766910990.000000
+Z104 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd|
+Z105 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_corruption_test.vhd|
 !i113 1
-R28
+R30
 R14
 Abehavioral
 R16
 R3
 R4
 DEx4 work 18 tb_corruption_test 0 22 Q4j[2Bo<nl9a3WCg[;0Kg2
-!i122 700
+!i122 777
 l38
 L9 144
 VofWbAd7@fCe6Y=J?>]WYo3
 !s100 =V9_<?<LH1UhR29?i]Odf2
 R8
 32
-R92
+R102
 !i10b 1
-R93
-R94
-R95
+R103
+R104
+R105
 !i113 1
-R28
+R30
 R14
 Etb_crcreceiver
-Z96 w1766664925
+Z106 w1766664925
 R3
 R4
-!i122 703
+!i122 780
 R5
-Z97 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd
-Z98 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd
+Z107 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd
+Z108 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd
 l0
 L4 1
 VPkA9Y_>a7?0RQIE7E1[Uh1
 !s100 ^dD?gaA2:aEzAoHOcbSGU2
 R8
 32
-R92
+R102
 !i10b 1
-R93
-Z99 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd|
-Z100 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd|
+R103
+Z109 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd|
+Z110 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_corrupt.vhd|
 !i113 1
-R28
+R30
 R14
 Abehavioral
 R3
 R4
 DEx4 work 14 tb_crcreceiver 0 22 PkA9Y_>a7?0RQIE7E1[Uh1
-!i122 703
+!i122 780
 l29
 L8 94
 Vf1Mmc=SP_LW[[H9k_D2BZ0
 !s100 lRj63?9?M@7lk0;kL<68O2
 R8
 32
-R92
+R102
 !i10b 1
-R93
-R99
-R100
+R103
+R109
+R110
 !i113 1
-R28
+R30
 R14
 Abehavior
 R16
 R3
 R4
 DEx4 work 14 tb_crcreceiver 0 22 nje>Gm>LJ3MQzKVRb22nW1
-!i122 701
+!i122 778
 l29
 L8 77
 V7:iWZb1:43zgJj;EV8dc21
 !s100 e=>U_n73]g]zT8YOkn?G=3
 R8
 32
-R92
+R102
 !i10b 1
-R93
+R103
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_CRCreceiver.vhd|
 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_CRCreceiver.vhd|
 !i113 1
-R28
+R30
 R14
 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_CRCreceiver.vhd
-R15
+R48
 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/tb_CRCreceiver.vhd
 Etb_crcreceiver_check
 R0
 R16
 R3
 R4
-!i122 704
+!i122 781
 R5
-Z101 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd
-Z102 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd
+Z111 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd
+Z112 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd
 l0
 L5 1
 V`:27o5;P:LP2g_^iZ8zkd1
 !s100 8TjkDVRPj?B5I=DHi[>7f1
 R8
 32
-R92
+R102
 !i10b 1
-R93
-Z103 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd|
-Z104 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd|
+R103
+Z113 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd|
+Z114 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TestBench_valid.vhd|
 !i113 1
-R28
+R30
 R14
 Abehavioral
 R16
 R3
 R4
 DEx4 work 20 tb_crcreceiver_check 0 22 `:27o5;P:LP2g_^iZ8zkd1
-!i122 704
+!i122 781
 l29
 L8 101
 Ve?j6:fU@ERHFnV6A<RBZ02
 !s100 BQYbdcFkHR31W^;OaT3>c1
 R8
 32
-R92
+R102
 !i10b 1
-R93
 R103
-R104
+R113
+R114
 !i113 1
-R28
+R30
 R14
-Etb_toplevel_crc
-Z105 w1766868321
+Etb_result_serializer
+Z115 w1766910915
 R16
 R3
 R4
-!i122 759
+!i122 793
 R5
-Z106 8tb_TopLevel_CRC.vhd
-Z107 Ftb_TopLevel_CRC.vhd
+Z116 8tb_Result_Serializer.vhd
+Z117 Ftb_Result_Serializer.vhd
+l0
+L5 1
+VldzNDXNnZhUeUZ@<_kT_A1
+!s100 G;WJMY:O[kYzK^kAiBN552
+R8
+33
+Z118 !s110 1766911131
+!i10b 1
+Z119 !s108 1766911130.000000
+Z120 !s90 -reportprogress|300|-2008|tb_Result_Serializer.vhd|
+Z121 !s107 tb_Result_Serializer.vhd|
+!i113 1
+R13
+R14
+Abehavioral
+R16
+R3
+R4
+DEx4 work 20 tb_result_serializer 0 22 ldzNDXNnZhUeUZ@<_kT_A1
+!i122 793
+l40
+L8 123
+V?7g0:IK60f1lX<j66nzP01
+!s100 W]Y7K8Y5XN9eHe`>J_zLV0
+R8
+33
+R118
+!i10b 1
+R119
+R120
+R121
+!i113 1
+R13
+R14
+Etb_toplevel_crc
+Z122 w1766868321
+R16
+R3
+R4
+!i122 1184
+R5
+Z123 8tb_TopLevel_CRC.vhd
+Z124 Ftb_TopLevel_CRC.vhd
 l0
 L5 1
 V==FZ@O<0NO>^>S;mPc`7^3
 !s100 8OId>aBcDQf:I0L5QGW=G2
 R8
 33
-Z108 !s110 1766868339
+Z125 !s110 1766921718
 !i10b 1
-Z109 !s108 1766868339.000000
-Z110 !s90 -reportprogress|300|-2008|tb_TopLevel_CRC.vhd|
-Z111 !s107 tb_TopLevel_CRC.vhd|
+Z126 !s108 1766921718.000000
+Z127 !s90 -reportprogress|300|-2008|tb_TopLevel_CRC.vhd|
+Z128 !s107 tb_TopLevel_CRC.vhd|
 !i113 1
 R13
 R14
@@ -873,19 +959,19 @@ Asim
 R16
 R3
 R4
-DEx4 work 15 tb_toplevel_crc 0 22 ==FZ@O<0NO>^>S;mPc`7^3
-!i122 759
+Z129 DEx4 work 15 tb_toplevel_crc 0 22 ==FZ@O<0NO>^>S;mPc`7^3
+!i122 1184
 l49
-Z112 L8 166
-VJ87@cSZ>6d^8OBW`dd_b>3
-Z113 !s100 7U6gVY>3zZ_jbf<6?bN1X3
+Z130 L8 166
+Z131 VJ87@cSZ>6d^8OBW`dd_b>3
+Z132 !s100 7U6gVY>3zZ_jbf<6?bN1X3
 R8
 33
-R108
+R125
 !i10b 1
-R109
-R110
-R111
+R126
+R127
+R128
 !i113 1
 R13
 R14
@@ -904,31 +990,31 @@ R8
 !s110 1766862877
 !i10b 1
 !s108 1766862877.000000
-R110
-R111
+R127
+R128
 !i113 1
 R13
 R14
 w1766862799
 Etoplevel_crc
-Z114 w1766866195
+Z133 w1766921708
 R3
 R4
-!i122 758
+!i122 1183
 R5
-Z115 8TopLevel_CRC.vhd
-Z116 FTopLevel_CRC.vhd
+Z134 8TopLevel_CRC.vhd
+Z135 FTopLevel_CRC.vhd
 l0
 L4 1
 VPa@Xc;aW4;mj^KLdG_cGd1
 !s100 J[iM=TFL[PQB5GOQ[3_4=2
 R8
 33
-R32
+R125
 !i10b 1
-R33
-Z117 !s90 -reportprogress|300|-2008|TopLevel_CRC.vhd|
-Z118 !s107 TopLevel_CRC.vhd|
+R126
+Z136 !s90 -reportprogress|300|-2008|TopLevel_CRC.vhd|
+Z137 !s107 TopLevel_CRC.vhd|
 !i113 1
 R13
 R14
@@ -936,29 +1022,29 @@ Abehavioral
 R3
 R4
 DEx4 work 12 toplevel_crc 0 22 Pa@Xc;aW4;mj^KLdG_cGd1
-!i122 758
-l55
-L16 103
-VIk1KPDTC:1hWf;I8E<3XG1
-!s100 c_5iEiGZaTzPKZCGF^`XD2
+!i122 1183
+l75
+R41
+V0zDh7Z1l<JI@[cILfD9KI0
+!s100 N^4HH^5gF_08@EHAjSl=h1
 R8
 33
-R32
+R125
 !i10b 1
-R33
-R117
-R118
+R126
+R136
+R137
 !i113 1
 R13
 R14
 Etoplevel_crc_tb
-Z119 w1766853959
+Z138 w1766853959
 R3
 R4
 !i122 64
 R5
-Z120 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd
-Z121 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd
+Z139 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd
+Z140 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd
 l0
 L4 1
 VCCQ<X]5jG;4joiCkQ_>8L2
@@ -968,10 +1054,10 @@ R8
 !s110 1766863243
 !i10b 1
 !s108 1766863243.000000
-Z122 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd|
-Z123 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd|
+Z141 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd|
+Z142 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/TopLevel_CRC_tb.vhd|
 !i113 1
-R28
+R30
 R14
 Asim
 DEx4 work 12 toplevel_crc 0 22 ZKFB]VHA2YdJkHY6Uf4W53
@@ -988,135 +1074,135 @@ R8
 !s110 1766862873
 !i10b 1
 !s108 1766862873.000000
-R122
-R123
+R141
+R142
 !i113 1
-R28
+R30
 R14
 Euart
-Z124 w1766863677
+Z143 w1766863677
 R3
 R4
-!i122 707
+!i122 1182
 R5
-Z125 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart.vhd
-Z126 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart.vhd
+Z144 8uart.vhd
+Z145 Fuart.vhd
 l0
 L4 1
-VTU=AF[lgL@TcaEHhlG<a>0
+V]aLf1C>GCC<^E9L6PEWZ60
 !s100 Z7SOn`Vh;`lFJHdni52870
 R8
-32
-Z127 !s110 1766867979
+33
+R125
 !i10b 1
-Z128 !s108 1766867979.000000
-Z129 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart.vhd|
-Z130 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart.vhd|
+R126
+Z146 !s90 -reportprogress|300|-2008|uart.vhd|
+Z147 !s107 uart.vhd|
 !i113 1
-R28
+R13
 R14
 Astructural
 R3
 R4
-DEx4 work 4 uart 0 22 TU=AF[lgL@TcaEHhlG<a>0
-!i122 707
+DEx4 work 4 uart 0 22 ]aLf1C>GCC<^E9L6PEWZ60
+!i122 1182
 l24
 L17 11
-V2ZK[glbS;ha?@S`n?G9V^1
+VH85?m<?k1QemE<7hX79JE1
 !s100 PPGFBN6Q=SgglD^]hmZ9@1
 R8
-32
-R127
+33
+R125
 !i10b 1
-R128
-R129
-R130
+R126
+R146
+R147
 !i113 1
-R28
+R13
 R14
 Euart_rx
-Z131 w1766863666
+Z148 w1766863666
 R16
 R3
 R4
-!i122 708
+!i122 1181
 R5
-Z132 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_rx.vhd
-Z133 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_rx.vhd
+Z149 8uart_rx.vhd
+Z150 Fuart_rx.vhd
 l0
 L5 1
-V^_:G4bbA63^6giSBH6Z7C1
+V_BLSA>2l2KL3IoKig<_FM3
 !s100 7QLFQTRao7P1kQkekIH^L3
 R8
-32
-R127
+33
+R125
 !i10b 1
-R128
-Z134 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_rx.vhd|
-Z135 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_rx.vhd|
+R21
+Z151 !s90 -reportprogress|300|-2008|uart_rx.vhd|
+Z152 !s107 uart_rx.vhd|
 !i113 1
-R28
+R13
 R14
 Abehavior
 R16
 R3
 R4
-DEx4 work 7 uart_rx 0 22 ^_:G4bbA63^6giSBH6Z7C1
-!i122 708
+DEx4 work 7 uart_rx 0 22 _BLSA>2l2KL3IoKig<_FM3
+!i122 1181
 l20
 L15 44
-V6>`eiBiE]a]nn9;Vd^od30
+VgQml[J=TO1<ZhY^KnObl<0
 !s100 el@R^kl]51c6?i?Q1FFe40
 R8
-32
-R127
+33
+R125
 !i10b 1
-R128
-R134
-R135
+R21
+R151
+R152
 !i113 1
-R28
+R13
 R14
 Euart_tx
-Z136 w1766863672
+Z153 w1766863672
 R16
 R3
 R4
-!i122 709
+!i122 1180
 R5
-Z137 8D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_tx.vhd
-Z138 FD:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_tx.vhd
+Z154 8uart_tx.vhd
+Z155 Fuart_tx.vhd
 l0
 L5 1
-VoaX0zG`o[[ZRM4keW1JPe0
+V3Ac8JGI:zfUkll5B1=e`22
 !s100 HFD:J`ih9lAHXYWAHg;Qb1
 R8
-32
-R127
+33
+R20
 !i10b 1
-R128
-Z139 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_tx.vhd|
-Z140 !s107 D:/Kuliah/Semester 3/Digital System/Tubes/Implementasi-VHDL-CRC/uart_tx.vhd|
+R21
+Z156 !s90 -reportprogress|300|-2008|uart_tx.vhd|
+Z157 !s107 uart_tx.vhd|
 !i113 1
-R28
+R13
 R14
 Abehavior
 R16
 R3
 R4
-DEx4 work 7 uart_tx 0 22 oaX0zG`o[[ZRM4keW1JPe0
-!i122 709
+DEx4 work 7 uart_tx 0 22 3Ac8JGI:zfUkll5B1=e`22
+!i122 1180
 l20
 L15 36
-V1Fjmf]W46B]3Tb=fE0Bi`0
+VXAE9G=>eZ@hhc:T7BRzcT0
 !s100 GzV?DanYoC8?>158So_=m3
 R8
-32
-R127
+33
+R20
 !i10b 1
-R128
-R139
-R140
+R21
+R156
+R157
 !i113 1
-R28
+R13
 R14
