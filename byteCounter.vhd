@@ -86,7 +86,7 @@ begin
                 if data_valid = '1' then
                     next_state <= s_one;
                 else
-                    next_state <= s_one;
+                    next_state <= s_four;
                 end if;
 
         end case;
